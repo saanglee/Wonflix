@@ -53,7 +53,9 @@ input::-webkit-contacts-auto-fill-button {
 input {
   background-color: transparent;
   background-image: none !important;
-  border: 0;
+
+  border: 2px solid white;
+  border-radius: 7px;
 }
 
 button {
@@ -70,5 +72,5 @@ button {
 input:is([type='button'], [type='submit'], [type='reset']),
 input[type='file']::file-selector-button,
 button {
-  color: initial;
+  color: white;
 } // override safari default blue

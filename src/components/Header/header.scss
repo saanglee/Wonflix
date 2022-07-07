@@ -1,0 +1,35 @@
+@import 'src/styles/constants/_colors.scss';
+@import 'src/styles/base/_fonts.scss';
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  height: 60px;
+  padding: 40px 40px 0 40px;
+  cursor: pointer;
+}
+
+.logo {
+  color: $RED1;
+  font-size: 2.9rem;
+  transition: all 0.1s linear;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+.header_favorites_btn {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid $WHITE;
+  border-radius: 20px;
+  width: 7rem;
+  transition: all 0.2s linear;
+}
+
+.header_favorites_btn:hover {
+  background-color: $GRAY3;
+}
