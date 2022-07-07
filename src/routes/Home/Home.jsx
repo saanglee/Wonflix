@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-function Home() {
-  return <div>Home</div>
-}
+const Home = () => {
+  return <div>홈 페이지</div>;
+};
 
-export default Home
+export default Home;
