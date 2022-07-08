@@ -1,7 +1,11 @@
 import React from 'react';
-
+import MovieList from '../../components/MovieList/MovieList';
 const Home = () => {
-  return <div>홈 페이지</div>;
+  return (
+    <div>
+      <MovieList />
+    </div>
+  );
 };
 
 export default Home;
