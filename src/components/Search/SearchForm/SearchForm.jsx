@@ -1,9 +1,12 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { inputState, focusedInput } from '../../../store/search';
+import { inputState, focusedInput, moviesData } from '../../../store/search';
 import './searchForm.scss';
+import axios from 'axios';
 
 const SearchForm = () => {
+  const [movies, setMovies] = useRecoilState(moviesData);
+
   const [search, setSearch] = useRecoilState(inputState);
   const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
 
@@ -15,9 +18,24 @@ const SearchForm = () => {
     [setSearch]
   );
 
+  const searchSubmit = async (event) => {
+    event.preventDefault();
+
+    const res = await axios
+      .get(`http://localhost:8000/movie?q=${search}`)
+      .then((response) => {
+        setMovies(response.data);
+      })
+      .catch((error) => console.log(error));
+  };
+
+  useEffect(() => {
+    console.log(movies);
+  }, [movies]);
+
   return (
-    <form onSubmit={() => {}} className='search_form'>
-      <input
+      <form onSubmit={searchSubmit} className='search_form'>
+          <input
         type='text'
         onChange={handleInputChange}
         onFocus={() => setIsInputFocused(true)}
@@ -25,10 +43,10 @@ const SearchForm = () => {
         className='search_form_input'
         placeholder='검색어를 입력해주세요.'
       />
-      <button type='button' className='search_form_btn'>
-        검색
-      </button>
-    </form>
+          <button type='button' className='search_form_btn'>
+              검색
+          </button>
+      </form>
   );
 };
 

@@ -1,7 +1,8 @@
 @use '/src/styles/constants/colors';
 
 .app {
-  height: 100vh;
+  height: fit;
+  min-height: 100vh;
   background-color: black;
   color: white;
 }
