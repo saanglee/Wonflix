@@ -1,13 +1,22 @@
 import React from 'react';
-import SearchForm from './SearchForm/SearchForm';
 import './header.scss';
+import Search from '../Search/Search';
+import { useNavigate } from 'react-router-dom';
 
 const Header = () => {
+  const navigate = useNavigate();
   return (
     <header className='header'>
       <h1 className='logo'>Wonflix</h1>
-      <SearchForm />
-      <button type='button' className='header_favorites_btn'>
+
+      <Search />
+      <button
+        type='button'
+        className='header_favorites_btn'
+        onClick={() => {
+          navigate('/favorites');
+        }}
+      >
         즐겨찾기
       </button>
     </header>
