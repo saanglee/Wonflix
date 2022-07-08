@@ -1,0 +1,11 @@
+@import '../../styles/constants/colors';
+
+.movies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 10rem;
+    min-height: 100vh;
+    background-color: $BLACK;
+}
