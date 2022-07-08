@@ -11,14 +11,14 @@ const Favorites = () => {
   }, [data]);
 
   return (
-    <div>
-      {favorites?.map((favor, index) => (
-        <div key={index}>
-          <img src={favor.medium_cover_image} alt={favor.title} />
-          {favor.title}
-        </div>
+      <div>
+          {favorites?.map((favor, index) => (
+              <div key={index}>
+                  <img src={favor.medium_cover_image} alt={favor.title} />
+                  {favor.title}
+              </div>
       ))}
-    </div>
+      </div>
   );
 };
 

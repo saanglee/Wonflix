@@ -34,8 +34,8 @@ const SearchForm = () => {
   }, [movies]);
 
   return (
-    <form onSubmit={searchSubmit} className='search_form'>
-      <input
+      <form onSubmit={searchSubmit} className='search_form'>
+          <input
         type='text'
         onChange={handleInputChange}
         onFocus={() => setIsInputFocused(true)}
@@ -43,10 +43,10 @@ const SearchForm = () => {
         className='search_form_input'
         placeholder='검색어를 입력해주세요.'
       />
-      <button type='button' className='search_form_btn'>
-        검색
-      </button>
-    </form>
+          <button type='button' className='search_form_btn'>
+              검색
+          </button>
+      </form>
   );
 };
 

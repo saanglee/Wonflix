@@ -10,19 +10,19 @@ import NotFound from './NotFound404/NotFound';
 
 const App = () => {
   return (
-    <ModalContextProvider>
-      <div className={styles.app}>
-        <RecoilRoot>
-          <Routes>
-            <Route path='/' element={<Layout />}>
-              <Route path='/home' element={<Home />} />
-              <Route path='favorites' element={<Favorites />} />
-              <Route path='*' element={<NotFound />} />
-            </Route>
-          </Routes>
-        </RecoilRoot>
-      </div>
-    </ModalContextProvider>
+      <ModalContextProvider>
+          <div className={styles.app}>
+              <RecoilRoot>
+                  <Routes>
+                      <Route path='/' element={<Layout />}>
+                          <Route path='/home' element={<Home />} />
+                          <Route path='favorites' element={<Favorites />} />
+                          <Route path='*' element={<NotFound />} />
+                      </Route>
+                  </Routes>
+              </RecoilRoot>
+          </div>
+      </ModalContextProvider>
   );
 };
 

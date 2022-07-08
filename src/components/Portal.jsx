@@ -1,7 +1,7 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
 
-export default function Portal({ children }) {
+export const Portal = ({ children }) => {
   const [mount, setMount] = React.useState(false);
   const body = React.useRef(null);
 
@@ -14,4 +14,4 @@ export default function Portal({ children }) {
     return createPortal(children, body.current);
   }
   return null;
-}
+};

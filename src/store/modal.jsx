@@ -10,6 +10,8 @@ const ModalModifyContext = React.createContext({
   closeModal: () => {},
 });
 
+
+
 export const ModalContextProvider = ({ children }) => {
   const [isOpen, setIsOpen] = React.useState(false);
   const [modalData, setModalData] = React.useState({});
@@ -29,11 +31,11 @@ export const ModalContextProvider = ({ children }) => {
   };
 
   return (
-    <ModalStateContext.Provider value={useMemo(() => ({ isOpen, modalData }), [isOpen, modalData])}>
-      <ModalModifyContext.Provider value={useMemo(() => ({ openModal, closeModal }), [openModal, closeModal])}>
-        {children}
-      </ModalModifyContext.Provider>
-    </ModalStateContext.Provider>
+      <ModalStateContext.Provider value={useMemo(() => ({ isOpen, modalData }), [isOpen, modalData])}>
+          <ModalModifyContext.Provider value={useMemo(() => ({ openModal, closeModal }), [openModal, closeModal])}>
+              {children}
+          </ModalModifyContext.Provider>
+      </ModalStateContext.Provider>
   );
 };
 
