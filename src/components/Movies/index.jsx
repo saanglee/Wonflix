@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useGetAllMovies } from '../../api/useGetMovie';
-import { useModifyModal } from '../../store/modal';
-import Card from './Card/Card';
-import _ from 'lodash';
-import './movies.scss';
 import { useRecoilState } from 'recoil';
+import _ from 'lodash';
+import { useGetAllMovies } from '../../api/useGetMovie';
 import { inputState, focusedInput, moviesData } from '../../store/search';
+import Card from './Card/Card';
+import './movies.scss';
 
-const MovieList = () => {
+const Movies = () => {
   const { data } = useGetAllMovies();
 
   const [movies, setMovies] = useRecoilState(moviesData);
@@ -16,24 +15,15 @@ const MovieList = () => {
     setMovies(data);
   }, [data]);
 
-  const { openModal } = useModifyModal();
-
-  const openModalWithData = (data) =>
-    openModal({
-      children: <img src ={data.large_cover_image} alt="" />, // TODO: MovieModalContent 생성
-      onSubmit: () => console.log('submit'), // TODO: 클라이언트 즐겨찾기 fetch
-    });
-
-  // TODO: MovieCard 생성
   return (
-      <>
-          <div className="movies">
-              {movies && movies.map((data) => (
-                  <Card key={data.id} onClick={() => openModalWithData(data)} role='presentation' data={data} />
-      ))}
-          </div>
-      </>
+    <>
+      <div className='movies'>
+        {movies?.map((movie) => (
+          <Card key={movie.id} movie={movie} role='presentation' />
+        ))}
+      </div>
+    </>
   );
 };
 
-export default React.memo(MovieList);
+export default Movies;

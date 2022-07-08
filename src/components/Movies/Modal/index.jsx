@@ -1,5 +1,6 @@
 import { useModalState, useModifyModal } from '../../../store/modal';
-import {Portal} from '../../Portal';
+import { Portal } from '../../Portal';
+import './modal.scss';
 
 const Modal = () => {
   const { isOpen, modalData } = useModalState();
@@ -18,24 +19,23 @@ const Modal = () => {
 
   const onSubmitInternal = () => {
     onSubmit?.();
-    closeModal();
   };
 
   return (
-      <Portal>
-          <div className='modal'>
-              <div className='modal__dropdown' onClick={closeModal} />
+    <Portal>
+      <div className='modal'>
+        <div className='modal__dropdown' onClick={closeModal} />
 
-              <div className='modal__contents'>
-                  <div>{children}</div>
+        <div className='modal__contents'>
+          <div>{children}</div>
 
-                  <div className='modal__actions'>
-                      <button onClick={onCancelInternal}>cancel</button>
-                      <button onClick={onSubmitInternal}>submit</button>
-                  </div>
-              </div>
+          <div className='modal__actions'>
+            <button onClick={onCancelInternal}>cancel</button>
+            <button onClick={onSubmitInternal}>즐겨찾기</button>
           </div>
-      </Portal>
+        </div>
+      </div>
+    </Portal>
   );
 };
 
