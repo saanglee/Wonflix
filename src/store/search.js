@@ -9,3 +9,8 @@ export const focusedInput = atom({
   key: 'focusedInput',
   default: false,
 });
+
+export const moviesData = atom({
+  key: 'moviesData',
+  default: [],
+});

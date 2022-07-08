@@ -2,7 +2,7 @@ import React, { useReducer, useEffect } from 'react';
 import Dropdown from './Dropdown/Dropdown';
 import SearchForm from './SearchForm/SearchForm';
 import { useRecoilValue } from 'recoil';
-import { focusedInput } from '../../recoil/search';
+import { focusedInput } from '../../store/search';
 import './search.scss';
 
 const reducer = (state, action) => {

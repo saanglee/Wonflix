@@ -12,6 +12,7 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-scripts": "5.0.1",
+    "recoil": "^0.7.4",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -19,7 +20,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "server": "json-server --watch ./public/data/movies.json --port 8000"
+    "server": "json-server --watch ./src/data/movies.json --port 8000"
   },
   "eslintConfig": {
     "extends": [
