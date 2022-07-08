@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { inputState } from '../../../recoil/search';
+import { inputState } from '../../../store/search';
 import './dropdown.scss';
 
 const Dropdown = () => {

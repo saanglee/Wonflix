@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { inputState, focusedInput } from '../../../recoil/search';
+import { inputState, focusedInput } from '../../../store/search';
 import './searchForm.scss';
 
 const SearchForm = () => {
