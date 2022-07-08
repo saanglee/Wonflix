@@ -11,8 +11,8 @@ Figma : https://www.figma.com/file/xuNG7O0WGr30z7zg8vqZha/pre-onboarding-week1-1
 
 | 이름   | 팀 구성             | 기능 구현 및 역할                                                                                                                                                                         |
 | ------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 김수빈 | 팀원 </br> Frontend | - json-server를 이용해 데이터 받아옴                                                                                                                               |
+| 김수빈 | 팀원 </br> Frontend | - json-server 작업, 데이터 받아옴                                                                                                                               |
 | 김민주 | 팀원 </br> Frontend | - 준비 중                                                                                                                                           |
-| 이상지 | 팀장 </br> Frontend | - Wire frame제작, 초기세팅, 헤더                                                                                                                           |
+| 이상지 | 팀장 </br> Frontend | - Wire frame제작, 초기세팅                                                                                                                         |
 | 이혜림 | 팀원 </br> Frontend | - Throtling, debouncing                                                     |
 | 홍승연 | 팀원 </br> Frontend | - Movie Card 제작 |
