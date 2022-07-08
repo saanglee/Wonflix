@@ -6,3 +6,8 @@ export const useGetAllMovies = () => {
   const response = useFetchData(BASE_URL);
   return response.data;
 };
+
+export const useGetFavoriteMovies = () => {
+  const response = useFetchData(`${BASE_URL}?like=true`);
+  return response.data;
+};
