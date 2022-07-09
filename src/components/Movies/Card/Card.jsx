@@ -1,7 +1,6 @@
 import React from 'react';
 import { useModifyModal } from '../../../store/modal';
 import './card.scss';
-import { CheckIcon } from '../../../assets/svgs/index';
 
 const Card = ({ movie, ...props }) => {
   const {
@@ -30,22 +29,13 @@ const Card = ({ movie, ...props }) => {
     });
 
   return (
-    <>
-      <div className='card'>
-        <div className='card_img' onClick={() => openModalWithData(movie)}>
-          <img src={medium_cover_image} alt={title} />
-        </div>
-
-        <h1 className='card_title' onClick={() => openModalWithData(movie)}>
-          {title}sssss
-        </h1>
-        <div className='card_favor'>
-          <label htmlFor='favor1'></label>
-          <input type='checkbox' name='favor' id='favor1' className='card_favor' />
-        </div>
-        {/* <CheckIcon /> */}
-      </div>
-    </>
+      <>
+          <div className='card' onClick={() => openModalWithData(movie)}>
+              <h1 className='card_title'>card</h1>
+              <h1 className='card_title'>{title}</h1>
+              <img src={medium_cover_image} alt={title} />
+          </div>
+      </>
   );
 };
 

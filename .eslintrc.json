@@ -28,7 +28,7 @@
       "error",
       { "extensions": [".js", ".jsx"] }
     ],
-    "react/jsx-indent": "warn",
+    "react/jsx-indent": "off",
     "react/jsx-props-no-spreading": "off",
     "react/no-array-index-key": "warn",
     "react/require-default-props": "off",
