@@ -1,6 +1,8 @@
 import React from 'react';
 import { useModifyModal } from '../../../store/modal';
 import './card.scss';
+
+
 import { CheckIcon } from '../../../assets/svgs/index';
 import ModalContent from '../ModalContent/ModalContent';
 
@@ -30,6 +32,7 @@ const Card = ({ movie, ...props }) => {
     });
 
   return (
+
     <>
       <div className='card' onClick={() => openModalWithData(movie)}>
         <div className='card_img'>
@@ -44,6 +47,7 @@ const Card = ({ movie, ...props }) => {
         {/* <CheckIcon /> */}
       </div>
     </>
+
   );
 };
 

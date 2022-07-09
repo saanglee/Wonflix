@@ -1,22 +1,22 @@
 import React from 'react';
 import { useRecoilValue } from 'recoil';
-import { inputState } from '../../../store/search';
+import { keywordState } from '../../../store/search';
 import './dropdown.scss';
 
 const Dropdown = () => {
-  const searchTerm = useRecoilValue(inputState);
+  const keyword = useRecoilValue(keywordState);
 
   // 글자수 길이 0개 = 검색 기록이 없습니다
   // 글자수 길이 1개 이상부터 = 하단에 검색어 렌더링
 
-  // const getLength = (searchTerm) => {
-  //   if (searchTerm.length > 0) return true;
+  // const getLength = (keyword) => {
+  //   if (keyword.length > 0) return true;
   // };
-  // getLength(searchTerm);
+  // getLength(keyword);
 
   return (
     <section className='dropdown'>
-      <p>{searchTerm.length > 0 ? searchTerm : '검색 기록이 없습니다.'} </p>
+      <p>{keyword.length > 0 ? keyword : '검색 기록이 없습니다.'} </p>
     </section>
   );
 };
