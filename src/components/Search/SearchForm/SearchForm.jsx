@@ -5,27 +5,32 @@ import { BASE_URL } from '../../../api/useGetMovie';
 
 import './searchForm.scss';
 import axios from 'axios';
+import { useSearch } from '../../../api/useSearch';
+import { useDebounce } from '../../../hooks/useDebounce';
 
 const SearchForm = () => {
-  const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [setIsInputFocused] = useSetRecoilState(focusedInput);
-
   const [movies, setMovies] = useRecoilState(moviesData);
+  const [keyword, setKeyword] = useRecoilState(keywordState);
+  const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
+// 얘는 추천검색어 기능을 위한 Debounce입니다
+  const debouncedKeyword = useDebounce(search, 100);
+
+  const handleInputChange = useCallback(
+    (event) => {
+      const { value } = event.target;
+      setSearch(value);
+    },
+    [setSearch]
+  );
 
   const searchSubmit = async (event) => {
     event.preventDefault();
 
-    const res = await axios
-      .get(`${BASE_URL}?q=${keyword}`)
-      .then((response) => {
-        setMovies(response.data);
-      })
-      .catch((error) => console.log(error));
   };
 
-  useEffect(() => {
-    console.log(movies);
-  }, [movies]);
+  // useEffect(() => {
+  //   console.log(movies);
+  // }, [movies]);
 
   const handleInputChange = useCallback(
     (event) => {

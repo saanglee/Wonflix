@@ -20,7 +20,6 @@ export const ModalContextProvider = ({ children }) => {
       children,
       onCancel,
       onSubmit,
-      data,
     });
   };
 

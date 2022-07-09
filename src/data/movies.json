@@ -1880,35 +1880,6 @@
             "like": false
         },
         {
-            "id": 43296,
-            "imdb_code": "tt21060266",
-            "title": "Thriller: A Cruel Documentary",
-            "title_english": "Thriller: A Cruel Documentary",
-            "title_long": "Thriller: A Cruel Documentary (2022)",
-            "slug": "thriller-a-cruel-documentary-2022",
-            "year": 2022,
-            "rating": 0,
-            "runtime": 0,
-            "genres": [
-                "Documentary"
-            ],
-            "summary": "A documentary about the making of \"Thriller: A Cruel Picture\" (1973).",
-            "description_full": "A documentary about the making of \"Thriller: A Cruel Picture\" (1973).",
-            "synopsis": "A documentary about the making of \"Thriller: A Cruel Picture\" (1973).",
-            "yt_trailer_code": "",
-            "language": "en",
-            "mpa_rating": "",
-            "background_image": "https://yts.mx/assets/images/movies/thriller_a_cruel_documentary_2022/background.jpg",
-            "background_image_original": "https://yts.mx/assets/images/movies/thriller_a_cruel_documentary_2022/background.jpg",
-            "small_cover_image": "https://yts.mx/assets/images/movies/thriller_a_cruel_documentary_2022/small-cover.jpg",
-            "medium_cover_image": "https://yts.mx/assets/images/movies/thriller_a_cruel_documentary_2022/medium-cover.jpg",
-            "large_cover_image": "https://yts.mx/assets/images/movies/thriller_a_cruel_documentary_2022/large-cover.jpg",
-            "state": "ok",
-            "date_uploaded": "2022-07-06 11:57:34",
-            "date_uploaded_unix": 1657101454,
-            "like": false
-        },
-        {
             "id": 43295,
             "imdb_code": "tt8041270",
             "title": "Jurassic World Dominion",

@@ -4,7 +4,10 @@ import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
 import { keywordState, focusedInput, moviesData } from '../../store/search';
 import Card from './Card/Card';
+
 import './movies.scss';
+import Card from './Card/Card';
+import Modal from '../Modal';
 
 const Movies = () => {
   const { data } = useGetAllMovies();
@@ -22,6 +25,8 @@ const Movies = () => {
           <Card key={movie.id} movie={movie} role='presentation' />
         ))}
       </div>
+      <Modal />
+
     </>
   );
 };
