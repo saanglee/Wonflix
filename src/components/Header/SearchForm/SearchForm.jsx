@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import './searchForm.scss';
 import axios from 'axios';
+import './searchForm.scss';
 
 const SearchForm = () => {
   const [word, setWord] = useState('');

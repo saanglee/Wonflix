@@ -1,13 +1,13 @@
 import React from 'react';
 import Movies from '../../components/Movies';
-import Modal from '../../components/Movies/Modal';
+import Modal from '../../components/Modal';
 
 const Home = () => {
   return (
-      <>
-          <Movies />
-          <Modal />
-      </>
+    <>
+      <Movies />
+      <Modal />
+    </>
   );
 };
 

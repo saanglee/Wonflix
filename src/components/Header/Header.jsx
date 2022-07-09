@@ -1,4 +1,4 @@
-import React, {useEffect, useState, useRef} from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import './header.scss';
 import Search from '../Search/Search';
 import { useNavigate } from 'react-router-dom';
@@ -26,24 +26,23 @@ const Header = () => {
 
   useEffect(() => {
     documentRef.current.addEventListener('scroll', throttleScroll);
-    return () =>
-      documentRef.current.removeEventListener('scroll', throttleScroll);
+    return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [pageY]);
   return (
-      <header className='header'>
-          <h1 className='logo'>Wonflix</h1>
+    <header className='header'>
+      <h1 className='logo'>Wonflix</h1>
 
-          <Search />
-          <button
+      <Search />
+      <button
         type='button'
         className='header_favorites_btn'
         onClick={() => {
           navigate('/favorites');
         }}
       >
-              즐겨찾기
-          </button>
-      </header>
+        즐겨찾기
+      </button>
+    </header>
   );
 };
 
