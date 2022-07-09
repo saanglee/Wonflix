@@ -1,33 +1,62 @@
-
 .card {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 14rem;
-    height: 20rem;
-    .card_title {
-        width: 5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 21%;
+  height: 30rem;
+  border: 1px solid #fff;
+  padding: 0.8rem;
+  overflow: hidden;
+  margin: 5% 5% 0 0;
+  transition: all 0.3s;
+  .card_img {
+    align-self: center;
+    cursor: pointer;
+
+    img {
+      //object-fit: cover;
+      max-width: 100%;
+      -webkit-transform: scale(1);
+      -moz-transform: scale(1);
+      -ms-transform: scale(1);
+      -o-transform: scale(1);
+      transform: scale(1);
+      -webkit-transition: 0.3s;
+      -moz-transition: 0.3s;
+      -ms-transition: 0.3s;
+      -o-transition: 0.3s;
+      transition: 0.3s;
     }
-    & > img {
-        object-fit: cover;
-        width: 100%;
-        position: block;
-        -webkit-transform: scale(1);
-        -moz-transform: scale(1);
-        -ms-transform: scale(1);
-        -o-transform: scale(1);
-        transform: scale(1);
-        -webkit-transition: 0.3s;
-        -moz-transition: 0.3s;
-        -ms-transition: 0.3s;
-        -o-transition: 0.3s;
-        transition: 0.3s;
-      }
-      & > img:hover {
-        -webkit-transform: scale(1.2);
-        -moz-transform: scale(1.2);
-        -ms-transform: scale(1.2);
-        -o-transform: scale(1.2);
-        transform: scale(1.2);
-      }
+  }
+  .card_title {
+    margin-top: 1rem;
+    cursor: pointer;
+  }
+
+  &:nth-child(4n) {
+    margin-right: 0;
+  }
+  &:nth-child(-n + 4) {
+    margin-top: 0;
+  }
+  &:hover {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    -o-transform: scale(1.1);
+    transform: scale(1.1);
+  }
+  .card_favor {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    right: 0.5rem;
+    bottom: 0.5rem;
+    width: 1rem;
+    height: 1rem;
+    input {
+      border-radius: 0;
+    }
+  }
 }

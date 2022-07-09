@@ -1,7 +1,7 @@
 import { atom } from 'recoil';
 
-export const keywordState = atom({
-  key: 'keyword',
+export const inputState = atom({
+  key: 'inputState',
   default: '',
 });
 
