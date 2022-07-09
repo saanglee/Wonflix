@@ -30,11 +30,11 @@ export const ModalContextProvider = ({ children }) => {
   };
 
   return (
-      <ModalStateContext.Provider value={useMemo(() => ({ isOpen, modalData }), [isOpen, modalData])}>
-          <ModalModifyContext.Provider value={useMemo(() => ({ openModal, closeModal }), [openModal, closeModal])}>
-              {children}
-          </ModalModifyContext.Provider>
-      </ModalStateContext.Provider>
+    <ModalStateContext.Provider value={useMemo(() => ({ isOpen, modalData }), [isOpen, modalData])}>
+      <ModalModifyContext.Provider value={useMemo(() => ({ openModal, closeModal }), [openModal, closeModal])}>
+        {children}
+      </ModalModifyContext.Provider>
+    </ModalStateContext.Provider>
   );
 };
 
