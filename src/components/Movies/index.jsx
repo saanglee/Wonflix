@@ -2,9 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
-import { keywordState, focusedInput, moviesData } from '../../store/search';
-import Card from './Card/Card';
-
+import { inputState, focusedInput, moviesData } from '../../store/search';
 import './movies.scss';
 import Card from './Card/Card';
 import Modal from '../Modal';
@@ -26,7 +24,6 @@ const Movies = () => {
         ))}
       </div>
       <Modal />
-
     </>
   );
 };
