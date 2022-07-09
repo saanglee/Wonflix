@@ -9,37 +9,13 @@ const Modal = () => {
     return <></>;
   }
 
-  const { children, onCancel, onSubmit, data } = modalData;
-  console.log(data);
-  const onCancelInternal = () => {
-    onCancel?.();
-    closeModal();
-  };
-
-  const onSubmitInternal = () => {
-    onSubmit?.();
-  };
+  const { children } = modalData;
 
   return (
     <Portal>
       <div className='modal'>
         <div className='modal__dropdown' onClick={closeModal} />
-
-        <div className='modal__contents'>
-          <div
-            className='modal__background'
-            style={{
-              backgroundImage: `linear-gradient(to bottom, transparent 30%, #000 70%), url(${data.large_cover_image})`,
-            }}
-          >
-            {data.title}
-          </div>
-
-          <div className='modal__actions'>
-            <button onClick={onCancelInternal}>cancel</button>
-            <button onClick={onSubmitInternal}>즐겨찾기</button>
-          </div>
-        </div>
+        {children}
       </div>
     </Portal>
   );

@@ -2,6 +2,7 @@ import React from 'react';
 import { useModifyModal } from '../../../store/modal';
 import './card.scss';
 import { CheckIcon } from '../../../assets/svgs/index';
+import ModalContent from '../ModalContent/ModalContent';
 
 const Card = ({ movie, ...props }) => {
   const {
@@ -22,23 +23,20 @@ const Card = ({ movie, ...props }) => {
 
   const { openModal } = useModifyModal();
 
-  const openModalWithData = (movie) =>
+  const openModalWithData = () =>
     openModal({
-      children: <img src={large_cover_image} alt='영화 포스터 사진' />, // TODO: MovieModalContent 생성
+      children: <ModalContent movie={movie} />,
       onSubmit: () => console.log('submit'), // TODO: 클라이언트 즐겨찾기 Toggle api
-      data: movie,
     });
 
   return (
     <>
-      <div className='card'>
-        <div className='card_img' onClick={() => openModalWithData(movie)}>
+      <div className='card' onClick={() => openModalWithData(movie)}>
+        <div className='card_img'>
           <img src={medium_cover_image} alt={title} />
         </div>
 
-        <h1 className='card_title' onClick={() => openModalWithData(movie)}>
-          {title}sssss
-        </h1>
+        <h1 className='card_title'>{title}</h1>
         <div className='card_favor'>
           <label htmlFor='favor1'></label>
           <input type='checkbox' name='favor' id='favor1' className='card_favor' />
