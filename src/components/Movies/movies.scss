@@ -1,16 +1,11 @@
 @import '../../styles/constants/colors';
 
-.inner {
-  width: 1200px;
-  margin: 0 auto;
-}
 .movies {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25rem;
-  margin-top: 8rem;
-  min-height: 100vh;
-  background-color: $BLACK;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    margin-top: 10rem;
+    min-height: 100vh;
+    background-color: $BLACK;
 }

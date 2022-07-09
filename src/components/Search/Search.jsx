@@ -1,40 +1,34 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import { useRecoilValue, useRecoilState } from 'recoil';
+import { focusedInput, keywordState, moviesData } from '../../store/search';
+import { BASE_URL } from '../../api/useGetMovie';
+
 import Dropdown from './Dropdown/Dropdown';
 import SearchForm from './SearchForm/SearchForm';
-import { useRecoilValue } from 'recoil';
-import { focusedInput } from '../../store/search';
+
 import './search.scss';
-
-const reducer = (state, action) => {
-  switch (action.type) {
-    case 'INIT':
-      return action.data;
-
-    default:
-      return state;
-  }
-};
+import axios from 'axios';
 
 const Search = () => {
+  // const [keyword] = useRecoilValue(keywordState);
+  // const [movies, setMovies] = useRecoilState(moviesData);
+
+  // const searchSubmit = async (event) => {
+  //   event.preventDefault();
+
+  //   const res = await axios
+  //     .get(`${BASE_URL}?q=${keyword}`)
+  //     .then((response) => {
+  //       setMovies(response.data);
+  //     })
+  //     .catch((error) => console.log(error));
+  // };
+
+  // useEffect(() => {
+  //   console.log(movies);
+  // }, [movies]);
+
   const isFocusedInput = useRecoilValue(focusedInput);
-  const [data, dispatch] = useReducer(reducer, []);
-
-  const getData = async () => {
-    const res = await fetch('https://jsonplaceholder.typicode.com/comments').then((res) => res.json());
-
-    const dummyData = res.slice(0, 20).map((it) => {
-      return {
-        email: it.email,
-        name: it.name,
-      };
-    });
-
-    dispatch({ type: 'INIT', data: dummyData });
-  };
-
-  useEffect(() => {
-    getData();
-  }, []);
 
   return (
     <div className='search_container'>

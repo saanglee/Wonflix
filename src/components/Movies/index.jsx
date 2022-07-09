@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
-import { inputState, focusedInput, moviesData } from '../../store/search';
+import { keywordState, focusedInput, moviesData } from '../../store/search';
 import Card from './Card/Card';
 import './movies.scss';
 
@@ -16,13 +16,13 @@ const Movies = () => {
   }, [data]);
 
   return (
-      <>
-          <div className='movies'>
-              {movies?.map((movie) => (
-                  <Card key={movie.id} movie={movie} role='presentation' />
+    <>
+      <div className='movies'>
+        {movies?.map((movie) => (
+          <Card key={movie.id} movie={movie} role='presentation' />
         ))}
-          </div>
-      </>
+      </div>
+    </>
   );
 };
 
