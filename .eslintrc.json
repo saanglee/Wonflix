@@ -19,6 +19,7 @@
   },
   "rules": {
     // "prettier/prettier": ["error", { "endOfLine": "auto" }],
+    "react-hooks/rules-of-hooks": "off",
     "react/prop-types": "off",
     "arrow-body-style": "off",
     "semi": [2, "always"],
