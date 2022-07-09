@@ -6,26 +6,108 @@
   flex-direction: column;
   justify-content: space-between;
   position: relative;
-  width: 45%;
-  height: 90%;
+  width: 100%;
+  max-width: 51.649rem;
+  height: 93%;
   overflow: hidden;
-  .img {
+
+  .modal-background {
     width: 100%;
     height: 100%;
     object-fit: cover;
-    border: 0;
-    border-radius: 0.75rem;
+    background-size: cover;
+    background-repeat: no-repeat;
+    filter: drop-shadow(0px 5.38107px 3.0749px rgba(0, 0, 0, 0.25));
+border-radius: 9.99341px;
   }
-  section {
+
+  // section {
+  //   height: 100%;
+  //   display: flex;
+  //   flex-direction: column;
+  //   justify-content: space-between;
+  //   align-items: flex-end;
+  //   margin: 0.75rem;
+  //   background-color: black;
+  //   button {
+  //     background-color: $BLACK;
+  //     font-size: 2rem;
+  //   }
+  // }
+
+  .flex-box {
+    width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-end;
-    margin: 0.75rem;
-    button {
-      background-color: $BLACK;
-      font-size: 2rem;
+    align-items: flex-start;
+  }
+  .blanks {
+    height: 60%;
+    width: 100%;
+  }
+  .modal-title {
+    color:aliceblue;
+    font-size: 2.75rem;
+    padding: 1rem;
+    line-height: 64px;
+    font-family: 'Gowun Batang', serif;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-between;
+    
+  }
+  .modal-rate {
+    color:aliceblue;
+    font-size: 1.4rem;
+    line-height: 64px;
+    font-family: 'Gowun Batang', serif;
+    text-align: right;
+    padding-right: 0.2rem;
+    width: 30%;
+  }
+
+  .modal-description {
+    color:aliceblue;
+    font-size: 1.5rem;
+    line-height: 35px;
+    font-family: 'Gowun Batang', serif;
+    display: flex;
+    max-height: 10rem;
+    padding-left: 1.2rem;
+    padding-bottom: 1.2rem;
+    & > p {
+      overflow: scroll;
+    }
+    & > div {
+      width: 18.75rem;
+
+      height: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: flex-end;
+
+    }
+    .favorite__btn {
+      font-size: 1.5rem;
+      line-height: 33px;
+      text-align: center;
+      background-color: $RED2;
+      margin: 1rem;
+      margin-bottom: 1.2rem;
+      padding: 0.12rem;
+      width: 12.125rem;
+      height: 4.75rem;
+      border-radius: 13px;
+
     }
   }
+}
+
+.close__btn {
+  position: absolute;
+  right:0;
+  padding: 0.9rem;
 }

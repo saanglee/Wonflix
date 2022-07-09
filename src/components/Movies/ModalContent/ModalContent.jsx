@@ -19,22 +19,38 @@ const ModalContent = ({ movie }) => {
 
   return (
     <div className='modal-contents'>
+       
       <div
-        className='img'
-        style={{
-          backgroundImage: `linear-gradient(359.99deg, #1F1F1F 18.28%, rgba(56, 56, 56, 0.945596) 35.07%, rgba(34, 34, 34, 0.333557) 63.99%, rgba(255, 255, 255, 0) 98.97%), url(${movie.large_cover_image})`,
-        }}
+        className='modal-background'
+        style={{backgroundImage: `linear-gradient(359.99deg, #3A3A3A 18.28%, rgba(56, 56, 56, 0.945596) 35.07%, rgba(34, 34, 34, 0.333557) 63.99%, rgba(255, 255, 255, 0) 98.97%), url(${movie.large_cover_image})`}}
       >
-        <section>
-          <button className='close__btn' onClick={onCancelInternal}>
-            cancel
+<button className='close__btn' onClick={onCancelInternal}>
+            close
           </button>
-          <section>
-            <span>{movie.title}</span>
-            <button className='favorite__btn' onClick={onSubmitInternal}>
-              즐겨찾기
+        <section className='flex-box'>
+          <div className='blanks'>
+
+          </div>
+
+          <section className='modal-title'>
+            <div>
+          <p>{movie.title} </p> 
+           <p>{movie.year}</p>
+           </div>
+           <p className='modal-rate'>평점 : {movie.rating}</p>
+           </section>
+          <section className='modal-description'>
+            <p>{movie.summary}</p>
+           {/* <p >{movie.synopsis}</p> */}
+           <div className='favorite__box'>
+         
+           <button className='favorite__btn' onClick={onSubmitInternal}>
+              즐겨찾기 ✨
             </button>
-          </section>
+            </div>
+           </section>
+
+          
         </section>
       </div>
     </div>
