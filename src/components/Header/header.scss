@@ -1,14 +1,21 @@
 @import 'src/styles/constants/_colors.scss';
 @import 'src/styles/base/_fonts.scss';
+@import 'src/styles/mixins/_responsive.scss';
 
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  padding: 40px 40px 0 40px;
-  cursor: pointer;
+    position:fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 5.75rem;
+    z-index: 10;
+    padding: 40px 40px 0 40px;
+    top:0;
+    cursor: pointer;
+    width: 100%;
+    background-color: $BLACK;
 }
+
 
 .logo {
   color: $RED1;
