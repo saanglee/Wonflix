@@ -7,11 +7,10 @@ import ModalContent from '../ModalContent/ModalContent';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { moviesData } from '../../../store/movies';
 import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
+import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs/index';
 
 const Card = ({ movie, ...props }) => {
   const favoriteInput = useRef(null);
-  //const [movies, setMovies] = useRecoilState(moviesData);
-
   const [movieData, setmovieData] = useState(movie);
 
   const {
@@ -30,8 +29,7 @@ const Card = ({ movie, ...props }) => {
     like,
   } = movieData;
 
-  //const debouncedKeyword = useDebounce(id, 100);
-
+  //const [isFavor, setIsFavor] = React.useState(false);
   const { openModal } = useModifyModal();
 
   const openModalWithData = () =>
@@ -44,6 +42,11 @@ const Card = ({ movie, ...props }) => {
     const isChecked = favoriteInput.current.checked;
     useUpdateFavorite(id, isChecked).then((result) => setmovieData(result));
   };
+
+  // const changeStar = (event) => {
+  //   event.stopPropagation();
+  //   setIsFavor(!isFavor);
+  // };
 
   return (
     <>
