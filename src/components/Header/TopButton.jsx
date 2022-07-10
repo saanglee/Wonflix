@@ -1,7 +1,7 @@
 import React from 'react';
 import './topButton.scss';
 import {moveToTop} from '../../hooks/moveToTop';
-import { ReactComponent as MoveToTopIcon } from '../../assets/svgs/move_to_top.svg';
+import { MoveToTopIcon } from '../../assets/svgs/index';
 const TopButton = () => {
     return (
         

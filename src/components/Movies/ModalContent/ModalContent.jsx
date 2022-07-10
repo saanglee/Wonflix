@@ -1,11 +1,13 @@
+import React from 'react';
 import { useModalState, useModifyModal } from '../../../store/modal';
 import './modalContent.scss';
+import { CloseIcon,StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs/index';
 
 const ModalContent = ({ movie }) => {
   const { modalData } = useModalState();
   const { closeModal } = useModifyModal();
   console.log(movie);
-
+  const [isFavor,setIsFavor] = React.useState(false);
   const { onCancel, onSubmit } = modalData;
 
   const onCancelInternal = () => {
@@ -14,6 +16,7 @@ const ModalContent = ({ movie }) => {
   };
 
   const onSubmitInternal = () => {
+    setIsFavor(!isFavor);
     onSubmit?.();
   };
 
@@ -31,7 +34,7 @@ const ModalContent = ({ movie }) => {
       > */}
 
 <button className='close__btn' onClick={onCancelInternal}>
-            close
+            <CloseIcon />
           </button>
         <section className='flex-box'>
           <div className='blanks'>
@@ -51,7 +54,11 @@ const ModalContent = ({ movie }) => {
            <div className='favorite__box'>
          
            <button className='favorite__btn' onClick={onSubmitInternal}>
-              즐겨찾기 ✨
+              즐겨찾기  {
+            isFavor === true?(
+              <StarFilledIcon />
+            ):<StarEmptyIcon />
+          }
             </button>
             </div>
            </section>
