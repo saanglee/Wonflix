@@ -3,6 +3,7 @@ import { useModifyModal } from '../../../store/modal';
 import './card.scss';
 import { CheckIcon } from '../../../assets/svgs/index';
 import ModalContent from '../ModalContent/ModalContent';
+import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs/index';
 
 const Card = ({ movie, ...props }) => {
   const {
@@ -20,7 +21,7 @@ const Card = ({ movie, ...props }) => {
     large_cover_image,
     like,
   } = movie;
-
+  const [isFavor,setIsFavor] = React.useState(false);
   const { openModal } = useModifyModal();
 
   const openModalWithData = () =>
@@ -38,8 +39,14 @@ const Card = ({ movie, ...props }) => {
 
         <h1 className='card_title'>{title}</h1>
         <div className='card_favor'>
-          <label htmlFor='favor1'></label>
-          <input type='checkbox' name='favor' id='favor1' className='card_favor' />
+          <label htmlFor='favor1' onClick={() => setIsFavor(!isFavor)}>
+          {/* <input type='checkbox' name='favor' id='favor1' className='card_favor' /> */}
+          {
+            isFavor === true?(
+              <StarFilledIcon />
+            ):<StarEmptyIcon />
+          }
+          </label>
         </div>
         {/* <CheckIcon /> */}
       </div>

@@ -30,7 +30,9 @@ const Header = () => {
   }, [pageY]);
   return (
     <header className='header'>
-      <h1 className='logo'>Wonflix</h1>
+      <h1 className='logo'><span onClick={() => {
+          navigate('/');
+        }}>Wonflix</span></h1>
 
       <Search />
       <button
