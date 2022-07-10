@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useRecoilState } from 'recoil';
-import { inputState, focusedInput, moviesData } from '../../../store/search';
+import { inputState, focusedInput } from '../../../store/search';
+import { moviesData } from '../../../store/movies';
 import './searchForm.scss';
 import axios from 'axios';
 import { useSearch } from '../../../api/useSearch';
@@ -10,7 +11,7 @@ const SearchForm = () => {
   const [movies, setMovies] = useRecoilState(moviesData);
   const [search, setSearch] = useRecoilState(inputState);
   const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
-// 얘는 추천검색어 기능을 위한 Debounce입니다
+  // 얘는 추천검색어 기능을 위한 Debounce입니다
   const debouncedKeyword = useDebounce(search, 100);
 
   const handleInputChange = useCallback(
@@ -26,13 +27,11 @@ const SearchForm = () => {
     useSearch(debouncedKeyword).then((result) => setMovies(result));
   };
 
-  // useEffect(() => {
-  //   console.log(movies);
-  // }, [movies]);
+  useEffect(() => {}, [movies]);
 
   return (
-      <form onSubmit={searchSubmit} className='search_form'>
-          <input
+    <form onSubmit={searchSubmit} className='search_form'>
+      <input
         type='text'
         onChange={handleInputChange}
         onFocus={() => setIsInputFocused(true)}
@@ -40,10 +39,10 @@ const SearchForm = () => {
         className='search_form_input'
         placeholder='검색어를 입력해주세요.'
       />
-          <button type='button' className='search_form_btn'>
-              검색
-          </button>
-      </form>
+      <button type='button' className='search_form_btn'>
+        검색
+      </button>
+    </form>
   );
 };
 
