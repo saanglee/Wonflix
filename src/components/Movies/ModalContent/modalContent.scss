@@ -76,19 +76,22 @@ border-radius: 9.99341px;
     font-family: 'Gowun Batang', serif;
     display: flex;
     max-height: 10rem;
+    justify-content: space-between;
+    width: 100%;
     padding-left: 1.2rem;
     padding-bottom: 1.2rem;
+    margin-bottom: 1rem;
     & > p {
       overflow: scroll;
+      margin-right: 0.6rem;
+
     }
     & > div {
-      width: 18.75rem;
-
+      // width: 18.75rem;
       height: 100%;
       display: flex;
       justify-content: center;
       align-items: flex-end;
-
     }
     .favorite__btn {
       font-size: 1.5rem;
@@ -101,6 +104,7 @@ border-radius: 9.99341px;
       width: 12.125rem;
       height: 4.75rem;
       border-radius: 13px;
+      
 
     }
   }
