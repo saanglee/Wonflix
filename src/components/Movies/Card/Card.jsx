@@ -30,6 +30,11 @@ const Card = ({ movie, ...props }) => {
       onSubmit: () => console.log('submit'), // TODO: 클라이언트 즐겨찾기 Toggle api
     });
 
+    const changeStar = (event) => {
+      event.stopPropagation();
+      setIsFavor(!isFavor);
+    };
+
   return (
     <>
       <div className='card' onClick={() => openModalWithData(movie)}>
@@ -39,7 +44,7 @@ const Card = ({ movie, ...props }) => {
 
         <h1 className='card_title'>{title}</h1>
         <div className='card_favor'>
-          <label htmlFor='favor1' onClick={() => setIsFavor(!isFavor)}>
+          <label htmlFor='favor1' onClick={changeStar}>
           {/* <input type='checkbox' name='favor' id='favor1' className='card_favor' /> */}
           {
             isFavor === true?(
