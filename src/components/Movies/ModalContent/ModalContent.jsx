@@ -22,8 +22,14 @@ const ModalContent = ({ movie }) => {
        
       <div
         className='modal-background'
-        style={{backgroundImage: `linear-gradient(359.99deg, #3A3A3A 18.28%, rgba(56, 56, 56, 0.945596) 35.07%, rgba(34, 34, 34, 0.333557) 63.99%, rgba(255, 255, 255, 0) 98.97%), url(${movie.large_cover_image})`}}
+        style={{backgroundImage: `linear-gradient(359.99deg, #2b2b2b 18.28%, rgba(43, 43, 43, 0.946) 26.07%, transparent 63.99%, rgba(255, 255, 255, 0) 98.97%), url(${movie.large_cover_image})`}}
       >
+{/* 
+        <div
+        className='modal-background'
+        style={{backgroundImage: `linear-gradient(359.99deg, #3A3A3A 18.28%, rgba(56, 56, 56, 0.945596) 35.07%, rgba(34, 34, 34, 0.333557) 63.99%, rgba(255, 255, 255, 0) 98.97%), url(${movie.large_cover_image})`}}
+      > */}
+
 <button className='close__btn' onClick={onCancelInternal}>
             close
           </button>
