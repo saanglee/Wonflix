@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useGetFavoriteMovies } from '../../api/useGetMovie';
+import Card from '../Movies/Card/Card';
 
 const Favorites = () => {
   const { data } = useGetFavoriteMovies();
@@ -9,16 +10,12 @@ const Favorites = () => {
     if (data === null || data === undefined) return;
     setFvorites(data);
   }, [data]);
-
   return (
-      <div>
-          {favorites?.map((favor, index) => (
-              <div key={index}>
-                  <img src={favor.medium_cover_image} alt={favor.title} />
-                  {favor.title}
-              </div>
+    <div className='movies'>
+      {favorites?.map((favor) => (
+        <Card key={favor.id} movie={favor} role='presentation' />
       ))}
-      </div>
+    </div>
   );
 };
 

@@ -19,9 +19,7 @@ const SearchForm = () => {
     useSearch(debouncedKeyword).then((result) => setMovies(result));
   };
 
-  // useEffect(() => {
-  //   console.log(movies);
-  // }, [movies]);
+  useEffect(() => {}, [movies]);
 
   const handleInputChange = (event) => {
     const { value } = event.target;
