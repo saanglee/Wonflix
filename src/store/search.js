@@ -6,7 +6,7 @@ export const keywordState = atom({
 });
 
 export const focusedInput = atom({
-  key: 'focusedInput',
+  key: 'isInputFocused',
   default: false,
 });
 
@@ -16,6 +16,10 @@ export const moviesData = atom({
 });
 
 export const dropdownState = atom({
-  key: 'openDropdown',
-  default: true,
+  key: 'isDropdownOpen',
+  default: false,
+});
+
+export const SearchState = atom({
+  key: 'isSearchOpen',
 });

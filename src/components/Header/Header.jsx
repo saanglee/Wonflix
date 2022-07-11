@@ -1,8 +1,12 @@
 import React, { useEffect, useState, useRef } from 'react';
 import './header.scss';
 import Search from '../Search/Search';
+import { useRecoilState } from 'recoil';
+
 import { useNavigate } from 'react-router-dom';
 import { useThrottle } from '../../hooks/useThrottle';
+import { HeaderSearchIcon } from '../../assets/svgs';
+import { SearchState } from '../../store/search';
 
 const Header = () => {
   const navigate = useNavigate();
@@ -11,6 +15,7 @@ const Header = () => {
   // scrolls
   const [hide, setHide] = useState(false);
   const [pageY, setPageY] = useState(0);
+  const [isSearchOpen, setIsSearchOpen] = useRecoilState(SearchState);
   // console.log(pageY);
 
   const documentRef = useRef(document);
@@ -24,26 +29,40 @@ const Header = () => {
     setPageY(pageYOffset);
   }
 
+  const handleClickSearchToggle = (event) => {
+    setIsSearchOpen((currnt) => !currnt);
+  };
   useEffect(() => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [pageY]);
   return (
     <header className='header'>
-      <h1 className='logo'><span onClick={() => {
-          navigate('/');
-        }}>Wonflix</span></h1>
+      <h1 className='logo'>
+        <span
+          onClick={() => {
+            navigate('/');
+          }}
+        >
+          Wonflix
+        </span>
+      </h1>
+      {isSearchOpen ? <Search /> : ''}
 
-      <Search />
-      <button
-        type='button'
-        className='header_favorites_btn'
-        onClick={() => {
-          navigate('/favorites');
-        }}
-      >
-        즐겨찾기
-      </button>
+      <div className='header_btn'>
+        <button className='search_btn' type='button' onClick={handleClickSearchToggle}>
+          <HeaderSearchIcon />
+        </button>
+        <button
+          type='button'
+          className='favorites_btn'
+          onClick={() => {
+            navigate('/favorites');
+          }}
+        >
+          즐겨찾기
+        </button>
+      </div>
     </header>
   );
 };

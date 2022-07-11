@@ -3,19 +3,18 @@
 @import 'src/styles/mixins/_responsive.scss';
 
 .header {
-    position:fixed;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    height: 5.75rem;
-    z-index: 10;
-    padding: 40px 40px 0 40px;
-    top:0;
-    cursor: pointer;
-    width: 100%;
-    background-color: $BLACK;
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 5.75rem;
+  z-index: 10;
+  padding: 40px 40px 0 40px;
+  top: 0;
+  cursor: pointer;
+  width: 100%;
+  background-color: $BLACK;
 }
-
 
 .logo {
   color: $RED1;
@@ -27,15 +26,23 @@
   transform: scale(1.1);
 }
 
-.header_favorites_btn {
-  padding: 10px;
-  font-size: 1rem;
-  border: 1px solid $WHITE;
-  border-radius: 20px;
-  width: 7rem;
-  transition: all 0.2s linear;
-}
+.header_btn {
+  display: flex;
 
-.header_favorites_btn:hover {
-  background-color: $GRAY3;
+  .search_btn {
+    padding-right: 20px;
+  }
+
+  .favorites_btn {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid $WHITE;
+    border-radius: 20px;
+    width: 7rem;
+    transition: all 0.2s linear;
+  }
+
+  .favorites_btn:hover {
+    background-color: $GRAY3;
+  }
 }
