@@ -2,9 +2,7 @@ import axios from 'axios';
 
 export const useUpdateFavorite = async (id, checked) => {
   try {
-    const response = await axios.get(`http://localhost:8000/movie/${id}`);
-    const request = await axios.put(`http://localhost:8000/movie/${id}`, {
-      ...response.data,
+    const request = await axios.patch(`http://localhost:8000/movie/${id}`, {
       like: checked,
     });
     return request.data;
