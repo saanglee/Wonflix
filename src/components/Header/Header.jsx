@@ -32,6 +32,7 @@ const Header = () => {
   const handleClickSearchToggle = (event) => {
     setIsSearchOpen((currnt) => !currnt);
   };
+
   useEffect(() => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
@@ -54,6 +55,7 @@ const Header = () => {
         <button className='search_btn' type='button' onClick={handleClickSearchToggle}>
           <HeaderSearchIcon />
         </button>
+
         <button
           type='button'
           className='favorites_btn'
