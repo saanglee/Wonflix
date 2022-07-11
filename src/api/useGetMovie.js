@@ -1,6 +1,5 @@
 import { useFetchData } from './useFetchData';
-
-const BASE_URL = 'http://localhost:8000/movie';
+import { BASE_URL } from './config';
 
 export const useGetAllMovies = () => {
   const response = useFetchData(BASE_URL);

@@ -5,12 +5,15 @@
   margin: 0 auto;
   max-width: 1200px;
 }
-.movies {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 0.25rem;
+
+.movie_wrap {
   padding-top: 8.75rem;
-  min-height: 100vh;
-  background-color: $BLACK;
+  .movies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    min-height: 100vh;
+    background-color: $BLACK;
+  }
 }
