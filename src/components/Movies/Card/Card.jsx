@@ -29,7 +29,6 @@ const Card = ({ movie, ...props }) => {
     like,
   } = movieData;
 
-  //const [isFavor, setIsFavor] = React.useState(false);
   const { openModal } = useModifyModal();
 
   const openModalWithData = () =>
@@ -42,11 +41,6 @@ const Card = ({ movie, ...props }) => {
     const isChecked = favoriteInput.current.checked;
     useUpdateFavorite(id, isChecked).then((result) => setmovieData(result));
   };
-
-  // const changeStar = (event) => {
-  //   event.stopPropagation();
-  //   setIsFavor(!isFavor);
-  // };
 
   return (
     <>
