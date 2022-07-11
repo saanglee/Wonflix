@@ -1,17 +1,12 @@
 .top-button {
-    width: 4rem;
-    height: 4rem;
-    bottom:4rem;
-    right:4rem;
-    position: fixed;
-    z-index: 10;
+  width: 100%;
+  height: 100%;
+  position: fixed;
 }
 
 .top-btn {
-    position: fixed;
-    bottom:0;
-    right:0;
-    margin: 3rem;
-    padding: 1rem;
-    border-radius: 3rem;
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 3rem;
 }
