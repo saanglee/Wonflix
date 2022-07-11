@@ -3,7 +3,7 @@ import { useRecoilState } from 'recoil';
 import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
 
-import { keywordState, focusedInput, moviesData } from '../../store/search';
+import { keywordState, moviesData } from '../../store/search';
 
 import './movies.scss';
 import Card from './Card/Card';
@@ -13,6 +13,7 @@ const Movies = () => {
   const { data } = useGetAllMovies();
 
   const [movies, setMovies] = useRecoilState(moviesData);
+
   useEffect(() => {
     if (data === undefined || data === null) return;
     setMovies(data);
