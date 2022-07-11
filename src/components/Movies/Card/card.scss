@@ -26,8 +26,8 @@
     margin: 0;
     margin-left: 3.7%;
     margin-bottom: 2%;
-    padding-bottom: 2rem;
     height: fit-content;
+    min-height: 22rem;
   }
 
   @media only screen and (min-width: getMinBreakpoint(SD)) {
@@ -35,8 +35,8 @@
     margin: 0;
     margin-left: 4%;
     margin-bottom: 2%;
-    padding-bottom: 3rem;
     height: fit-content;
+    min-height: 27rem;
   }
 
   @media only screen and (min-width: getMinBreakpoint(MD)) {
@@ -50,7 +50,7 @@
     overflow: hidden;
     transition: all 0.3s;
     margin-bottom: 2%;
-    padding-bottom: 3rem;
+    min-height: 27.5rem;
   }
 
   @media only screen and (min-width: getMinBreakpoint(LD)) {
