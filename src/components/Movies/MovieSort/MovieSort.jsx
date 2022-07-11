@@ -12,7 +12,7 @@ const MovieSort = () => {
     { name: '평점순', value: 'rating' },
     { name: '최신순', value: 'year' },
   ];
-  const [sortValue, setSortValue] = useState(sortOptions[0].value);
+  //const [sortValue, setSortValue] = useState(sortOptions[0].value);
 
   const onHandleSort = (event) => {
     // setSortValue(event.target.value);
@@ -27,7 +27,6 @@ const MovieSort = () => {
           name='movieSort'
           id='movieSort'
           onSelect={onHandleSort}
-          value={sortValue}
           //ref={sortSelect}
         >
           {sortOptions.map((option, index) => (
