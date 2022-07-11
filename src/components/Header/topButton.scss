@@ -1,16 +1,33 @@
-.top-button {
+@import '../../styles/mixins/responsive';
 
+.top-button {
   position: fixed;
-  z-index: 99;
+  z-index: 30;
+
+  @media only screen and (min-width: getMinBreakpoint(SD)) {
+    margin: 3rem;
+  }
+  @media only screen and (max-width: getMaxBreakpoint(SD)) {
+    transition: 0.4s ease;
+    &.hide {
+      transform: translateY(80px);
+      visibility: hidden;
+    }
+  }
+
+
+
 }
 
 .top-btn {
   position: fixed;
   bottom: 0;
   right: 0;
-  z-index: 99;
+  z-index: 30;
+  transition: 0.4s ease;
 
   @media only screen and (min-width: getMinBreakpoint(SD)) {
     margin: 3rem;
   }
+
 }

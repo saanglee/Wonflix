@@ -2,16 +2,17 @@ import React from 'react';
 import './topButton.scss';
 import { MoveToTopIcon } from '../../assets/svgs/index';
 
-const TopButton = () => {
+const TopButton = (props) => {
   const moveToTop = () =>
     document.documentElement.scrollIntoView({
       behavior: 'smooth',
       block: 'start',
       inline: 'center',
     });
+  const {hide, setHide} = props;
 
   return (
-    <div className='top-button'>
+    <div className={hide ? 'hide top-button': 'top-button'}>
       <button className='top-btn' onClick={moveToTop}>
         <MoveToTopIcon />
       </button>
