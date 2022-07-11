@@ -28,13 +28,14 @@ const Header = () => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [pageY]);
+  
   return (
-    <header className='header'>
+    <header className={hide ? 'hide header' : 'header'}>
       <h1 className='logo'><span onClick={() => {
           navigate('/');
         }}>Wonflix</span></h1>
 
-      <Search />
+      <div className="md"><Search /></div>
       <button
         type='button'
         className='header_favorites_btn'
