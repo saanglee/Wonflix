@@ -10,11 +10,6 @@ export const focusedInput = atom({
   default: false,
 });
 
-export const moviesData = atom({
-  key: 'moviesData',
-  default: [],
-});
-
 export const dropdownState = atom({
   key: 'isDropdownOpen',
   default: false,

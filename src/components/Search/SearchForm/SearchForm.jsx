@@ -1,6 +1,7 @@
 import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
-import { SearchState, keywordState, dropdownState, focusedInput, moviesData } from '../../../store/search';
+import { SearchState, keywordState, dropdownState, focusedInput } from '../../../store/search';
+import { moviesData } from '../../../store/movies';
 import './searchForm.scss';
 import axios from 'axios';
 import { useSearch } from '../../../api/useSearch';

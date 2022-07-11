@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
+import { keywordState } from '../../store/search';
 import { moviesData } from '../../store/movies';
 
 import './movies.scss';
