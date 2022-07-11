@@ -14,6 +14,11 @@
     cursor: pointer;
     width: 100%;
     background-color: $BLACK;
+    transition: 0.4s ease;
+    &.hide {
+      transform: translateY(-80px);
+      visibility: hidden;
+    }
 }
 
 
@@ -38,4 +43,11 @@
 
 .header_favorites_btn:hover {
   background-color: $GRAY3;
+}
+
+.md{
+  display: none;
+  @media only screen and (min-width: getMinBreakpoint(SD)) {
+    display:contents;
+  }
 }
