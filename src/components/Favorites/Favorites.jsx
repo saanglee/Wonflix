@@ -13,13 +13,15 @@ const Favorites = () => {
   }, [data]);
   return (
     <>
-    <div className='movies'>
-      {favorites?.map((favor) => (
-        <Card key={favor.id} movie={favor} role='presentation' />
-      ))}
-    </div>
-       <Modal />
-       </>
+      <div className='movie_wrap'>
+        <div className='movies'>
+          {favorites?.map((favor) => (
+            <Card key={favor.id} movie={favor} role='presentation' />
+          ))}
+        </div>
+      </div>
+      <Modal />
+    </>
   );
 };
 
