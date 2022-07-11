@@ -6,15 +6,47 @@
   padding: 10px;
   background-color: $GRAY3;
   margin-top: 50px;
-  height: 60px;
+  height: auto;
   width: 348px;
-  display: flex;
-  justify-content: space-between;
+  // display: flex;
+  // justify-content: space-between;
   position: absolute;
   cursor: default;
+  white-space: nowrap;
 }
+// .false_hidden {
+//   visibility: hidden;
+// }
 
 .close_button {
   height: 10px;
   cursor: pointer;
+}
+
+.dropdown_list {
+  font-size: 17px;
+}
+
+.dropdown_close {
+  padding: 10px 0;
+  font-size: 12px;
+  height: 10px;
+  float: right;
+  cursor: pointer;
+}
+
+.dropdown_item {
+  font-size: 18px;
+  padding: 8px 0;
+  white-space: nowrap;
+  cursor: pointer;
+
+  mark {
+    background-color: transparent;
+    font-weight: bold;
+    color: $WHITE;
+  }
+  span {
+    font-weight: lighter;
+  }
 }

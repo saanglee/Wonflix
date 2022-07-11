@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
-import { inputState, focusedInput, moviesData } from '../../store/search';
+import { keywordState, focusedInput, moviesData } from '../../store/search';
 import './movies.scss';
 import Card from './Card/Card';
 import Modal from '../Modal';
