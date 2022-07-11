@@ -1,1 +1,1 @@
-const BASE_URL = 'http://localhost:8000/movie';
+export const BASE_URL = 'http://localhost:8000/movie';

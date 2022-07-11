@@ -17,4 +17,5 @@ export const dropdownState = atom({
 
 export const SearchState = atom({
   key: 'isSearchOpen',
+  default: false,
 });
