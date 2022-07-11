@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { moviesData, keywordState, dropdownState } from '../../../store/search';
+import { keywordState, dropdownState } from '../../../store/search';
+import { moviesData } from '../../../store/movies';
 import DropdownItems from './DropdownItems';
 import './dropdown.scss';
 import cx from 'classnames';
