@@ -2,8 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
-
-import { keywordState, focusedInput } from '../../store/search';
 import { moviesData } from '../../store/movies';
 
 import './movies.scss';
@@ -15,6 +13,7 @@ const Movies = () => {
   const { data } = useGetAllMovies();
 
   const [movies, setMovies] = useRecoilState(moviesData);
+
   useEffect(() => {
     if (data === undefined || data === null) return;
     setMovies(data);

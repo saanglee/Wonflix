@@ -10,18 +10,49 @@
   overflow: hidden;
   margin: 5% 5% 0 0;
   transition: all 0.3s;
+  
 
   @media only screen and (min-width: getMinBreakpoint(M)) {
-    // color:red;
     width: 100%;
     margin:auto;
   }
-  @media only screen and (min-width: getMinBreakpoint(SD)) {
-    // color:red;
+  // @media only screen and (min-width: getMinBreakpoint(ML)) {
+  //   // color:red;
+  //   width: 44%;
+  //   margin:auto;
+  // }
+  @media only screen and (min-width: getMinBreakpoint(ML)) {
     width: 44%;
     margin: 0;
-    margin-left: 4%;
+    margin-left: 3.7%;
+    margin-bottom: 2%;
+    height: fit-content;
+    min-height: 22rem;
   }
+
+  @media only screen and (min-width: getMinBreakpoint(SD)) {
+    width: 27.5%;
+    margin: 0;
+    margin-left: 4%;
+    margin-bottom: 2%;
+    height: fit-content;
+    min-height: 27rem;
+  }
+
+  @media only screen and (min-width: getMinBreakpoint(MD)) {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 19.8%;
+    border: 1px solid #fff;
+    padding: 0.8rem;
+    padding-bottom: 1.5rem;
+    overflow: hidden;
+    transition: all 0.3s;
+    margin-bottom: 2%;
+    min-height: 27.5rem;
+  }
+
   @media only screen and (min-width: getMinBreakpoint(LD)) {
     position: relative;
     display: flex;
