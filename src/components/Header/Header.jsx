@@ -36,6 +36,7 @@ const Header = () => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [pageY]);
+
   return (
     <header className='header'>
       <h1 className='logo'>

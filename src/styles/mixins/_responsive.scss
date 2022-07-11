@@ -1,8 +1,8 @@
 @function getMinBreakpoint($media) {
   @if $media == M {
-    @return 375px;
+    @return 279px;
   } @else if $media == ML {
-    @return 600px;
+    @return 359px;
   } @else if $media == SD {
     @return 768px;
   } @else if $media == MD {
