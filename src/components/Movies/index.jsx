@@ -3,7 +3,8 @@ import { useRecoilState } from 'recoil';
 import _ from 'lodash';
 import { useGetAllMovies } from '../../api/useGetMovie';
 
-import { keywordState, moviesData } from '../../store/search';
+import { keywordState } from '../../store/search';
+import { moviesData } from '../../store/movies';
 
 import './movies.scss';
 import Card from './Card/Card';

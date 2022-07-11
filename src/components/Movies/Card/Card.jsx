@@ -5,7 +5,6 @@ import './card.scss';
 import { CheckIcon } from '../../../assets/svgs/index';
 import ModalContent from '../ModalContent/ModalContent';
 import { useDebounce } from '../../../hooks/useDebounce';
-import { moviesData } from '../../../store/movies';
 import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
 import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs/index';
 

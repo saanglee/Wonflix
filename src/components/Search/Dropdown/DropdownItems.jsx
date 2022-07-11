@@ -2,7 +2,8 @@ import React, { useMemo } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useSearch } from '../../../api/useSearch';
-import { keywordState, moviesData } from '../../../store/search';
+import { keywordState } from '../../../store/search';
+import { moviesData } from '../../../store/movies';
 import { SearchIcon } from '../../../assets/svgs';
 import './dropdown.scss';
 
