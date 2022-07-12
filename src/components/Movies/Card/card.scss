@@ -16,11 +16,7 @@
     width: 100%;
     margin: auto;
   }
-  // @media only screen and (min-width: getMinBreakpoint(ML)) {
-  //   // color:red;
-  //   width: 44%;
-  //   margin:auto;
-  // }
+
   @media only screen and (min-width: getMinBreakpoint(ML)) {
     width: 44%;
     margin: 0;
@@ -70,7 +66,6 @@
     align-self: center;
     cursor: pointer;
     img {
-      //object-fit: cover;
       max-width: 100%;
       -webkit-transform: scale(1);
       -moz-transform: scale(1);
