@@ -4,7 +4,7 @@ import { CloseIcon } from '../../../assets/svgs';
 import { modalMovieData } from '../../../store/movies';
 import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs';
 import './modalContent.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 const ModalContent = ({ movie }) => {
   const { modalData } = useModalState();
@@ -13,7 +13,7 @@ const ModalContent = ({ movie }) => {
   const modalMovie = useRecoilValue(modalMovieData(movie.id));
 
   const [moreOpen, setMoreOpen] = useState(false);
-
+  const [isMoreBtn, setIsMoreBtn] = useState(false);
   const onCancelInternal = () => {
     onCancel?.();
     closeModal();
@@ -26,6 +26,10 @@ const ModalContent = ({ movie }) => {
   const onMoreTextHandler = () => {
     setMoreOpen(!moreOpen);
   };
+
+  useEffect(() => {
+    if (movie.summary.length > 135) setIsMoreBtn(true);
+  }, []);
 
   return (
     <div className='modal-contents'>
@@ -50,9 +54,11 @@ const ModalContent = ({ movie }) => {
             <section className='modal-description'>
               <div className={`modal-summary ${moreOpen && 'open'}`}>
                 <p>{modalMovie.summary}</p>
-                <button type='button' onClick={onMoreTextHandler}>
-                  {moreOpen ? '[더보기 닫기]' : '[더보기]'}
-                </button>
+                {isMoreBtn && (
+                  <button type='button' onClick={onMoreTextHandler}>
+                    {moreOpen ? '[더보기 닫기]' : '[더보기]'}
+                  </button>
+                )}
               </div>
               <div className='favorite__box'>
                 <button
