@@ -1,9 +1,7 @@
-import React from 'react';
 import { useRecoilValue } from 'recoil';
 import { useModalState, useModifyModal } from '../../../store/modal';
 import { CloseIcon } from '../../../assets/svgs';
-import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
-import { moviesData } from '../../../store/movies';
+import { modalMovieData } from '../../../store/movies';
 import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs';
 import './modalContent.scss';
 
@@ -11,12 +9,7 @@ const ModalContent = ({ movie }) => {
   const { modalData } = useModalState();
   const { closeModal } = useModifyModal();
   const { onCancel, onSubmit } = modalData;
-
-  const movies = useRecoilValue(moviesData);
-  // TODO: id와 일치하는 movie 데이터 찾기 selector (get)
-  // get을 이용해 id와 일치하는 값을 리턴하도록 수정해보자.
-  // => why? 여러 곳에서 사용되는 로직
-  const modalMovie = movies.find((movieData) => movieData.id === movie.id);
+  const modalMovie = useRecoilValue(modalMovieData(movie.id));
 
   const onCancelInternal = () => {
     onCancel?.();

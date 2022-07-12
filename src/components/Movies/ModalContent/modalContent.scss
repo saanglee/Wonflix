@@ -31,6 +31,12 @@
     margin: auto 0;
   }
 
+  .modal-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
   .modal-title {
     color: aliceblue;
     font-size: 2.75rem;
@@ -55,10 +61,6 @@
   }
 
   .modal-description {
-    color: aliceblue;
-    font-size: 1.5rem;
-    line-height: 35px;
-    font-family: 'Gowun Batang', serif;
     display: flex;
     max-height: 10rem;
     justify-content: space-between;
@@ -67,6 +69,10 @@
     padding-left: 1.2rem;
     padding-bottom: 1.2rem;
     margin-bottom: 1rem;
+    color: aliceblue;
+    font-size: 1.5rem;
+    line-height: 35px;
+    font-family: 'Gowun Batang', serif;
     & > p {
       height: 7rem;
       overflow: scroll;
@@ -89,6 +95,7 @@
       width: 12.125rem;
       height: 4.75rem;
       border-radius: 13px;
+      word-spacing: 0.5rem;
     }
   }
 }
