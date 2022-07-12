@@ -1,16 +1,25 @@
 @import '../../styles/constants/colors';
 
 .inner {
-  width: 1200px;
+  width: 100%;
   margin: 0 auto;
+  max-width: 1200px;
 }
-.movies {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 0.25rem;
-  margin-top: 8rem;
-  min-height: 100vh;
-  background-color: $BLACK;
+
+.movie_wrap {
+  padding-top: 8.75rem;
+  .movies {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    min-height: 100vh;
+    background-color: $BLACK;
+    & .no_favorite_list{
+      width: 100%;
+      text-align: center;
+      margin-top: -5.75rem;
+    }
+  }
 }
