@@ -35,10 +35,8 @@ const Header = (props) => {
 
   const [movies, setMovies] = useRecoilState(moviesData);
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const { data } = useGetAllMovies();
   const goHome = () => {
-    navigate('/');
-    setMovies(data);
+    navigate('/', {replace: true});
     setKeyword('');
   };
   return (
