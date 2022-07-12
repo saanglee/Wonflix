@@ -12,3 +12,18 @@ export const favoriteMoviesData = selector({
     return movies.filter((movie) => movie.like);
   },
 });
+
+export const sortData = atom({
+  key: 'sortData',
+  default: '',
+});
+
+export const pageData = atom({
+  key: 'pageData',
+  default: 1,
+});
+
+export const isFilterData = atom({
+  key: 'isFilterData',
+  default: true,
+});
