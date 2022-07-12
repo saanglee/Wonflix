@@ -1,8 +1,16 @@
-import { atom, selector } from 'recoil';
+import { atom, selector, selectorFamily } from 'recoil';
 
 export const moviesData = atom({
   key: 'moviesData',
   default: [],
+});
+
+export const modalMovieData = selectorFamily({
+  key: 'modalMovieData',
+  get:
+    (id) =>
+    ({ get }) =>
+      get(moviesData).find((movie) => movie.id === id),
 });
 
 export const favoriteMoviesData = selector({

@@ -13,11 +13,9 @@ const MovieSort = () => {
   ];
 
   const onHandleSort = (event) => {
-
     setValues(event.target.value);
     setPageNum(1);
     setIsFilter(true);
-   
   };
 
   return (
@@ -25,7 +23,7 @@ const MovieSort = () => {
       <div className='select_wrap'>
         <select name='movieSort' id='movieSort' onChange={onHandleSort}>
           {sortOptions.map((option) => (
-            <option key={`1-${option}`} value={option.value}>
+            <option key={`movies-option-${option.name}`} value={option.value}>
               {option.name}
             </option>
           ))}
