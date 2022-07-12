@@ -1,16 +1,21 @@
 import React, { useMemo } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useSearch } from '../../../api/useSearch';
 import { keywordState } from '../../../store/search';
+import { moviesData } from '../../../store/movies';
+import { SearchIcon } from '../../../assets/svgs';
 import './dropdown.scss';
 
 const DropdownItems = ({ title }) => {
+  // TODO: title공백 제거한걸로 비교
   const navigate = useNavigate();
   const [keyword, setKeyword] = useRecoilState(keywordState);
+  const [movies, setMovies] = useRecoilState(moviesData);
 
   const handleClickTitle = (event) => {
-    console.log(event.currentTarget.dataset);
-    // navigate({ pathname: '/search', search: createSearchParams({ name: drop! }).toString() })
+    setKeyword(title);
+    useSearch(title).then((result) => setMovies(result));
   };
 
   const markText = useMemo(() => {
@@ -37,6 +42,9 @@ const DropdownItems = ({ title }) => {
 
     return (
       <>
+        <span className='search_icon'>
+          <SearchIcon style={{ width: '20px' }} />
+        </span>
         <mark>{markStr.join('')}</mark>
         <span>{spanStr.join('')}</span>
       </>

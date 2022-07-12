@@ -1,18 +1,24 @@
-import React, { useCallback, useState, useEffect } from 'react';
+import React, { useCallback, useState, useEffect, useMemo } from 'react';
 import { useRecoilState } from 'recoil';
-import { keywordState, dropdownState, focusedInput, moviesData } from '../../../store/search';
+import { SearchState, keywordState, dropdownState, focusedInput } from '../../../store/search';
+import { moviesData } from '../../../store/movies';
 import './searchForm.scss';
 import axios from 'axios';
 import { useSearch } from '../../../api/useSearch';
 import { useDebounce } from '../../../hooks/useDebounce';
+import cx from 'classnames';
 
 const SearchForm = () => {
+  const [isSearchOpen, setIsSearchOpen] = useRecoilState(SearchState);
   const [movies, setMovies] = useRecoilState(moviesData);
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [openDropdown, setOpenDropdown] = useRecoilState(dropdownState);
+  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
   const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
-  // 얘는 추천검색어 기능을 위한 Debounce입니다
+
   const debouncedKeyword = useDebounce(keyword, 100);
+  useEffect(() => {
+    console.log(debouncedKeyword);
+  }, [debouncedKeyword]);
 
   const searchSubmit = async (event) => {
     event.preventDefault();
@@ -27,18 +33,23 @@ const SearchForm = () => {
   };
 
   const handleInputFocused = () => {
+    setIsDropdownOpen(true);
     setIsInputFocused(true);
-    setOpenDropdown(true);
+  };
+
+  const handleInputBlur = () => {
+    setIsDropdownOpen(false);
+    setIsInputFocused(false);
   };
 
   return (
-    <form onSubmit={searchSubmit} className='search_form'>
+    <form onSubmit={searchSubmit} className={cx('search_form', { active: isSearchOpen })}>
       <input
         type='text'
         value={keyword}
         onChange={handleInputChange}
         onFocus={handleInputFocused}
-        onBlur={() => setIsInputFocused(false)}
+        onBlur={handleInputBlur}
         className='search_form_input'
         placeholder='검색어를 입력해주세요.'
       />
@@ -50,3 +61,5 @@ const SearchForm = () => {
 };
 
 export default SearchForm;
+
+// TODO: 검색어 input focus시 검색창 with 길어지도록 하기

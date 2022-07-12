@@ -1,0 +1,33 @@
+@import 'src/styles/constants/colors';
+@import '../../../styles/mixins/responsive';
+
+select::-ms-expand {
+  display: none;
+}
+.select_custom {
+  -o-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.movie_sort {
+  padding: 2rem 0;
+  .select_wrap {
+    display: inline-block;
+    padding: 0 0.5rem;
+    border: 1px solid $WHITE;
+    select {
+      position: relative;
+      width: 9.5rem;
+      height: 2.5rem;
+      border: none;
+      background: $BLACK;
+      color: $WHITE;
+      cursor: pointer;
+    }
+  }
+  @media only screen and (max-width: getMaxBreakpoint(LD)) {
+    padding: 2% 4% 4%;
+  }
+}

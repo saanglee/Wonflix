@@ -3,6 +3,7 @@ import { useRecoilState } from 'recoil';
 import ModalContent from '../ModalContent/ModalContent';
 import { useModifyModal } from '../../../store/modal';
 import { moviesData } from '../../../store/movies';
+import { useDebounce } from '../../../hooks/useDebounce';
 import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
 import { replaceItemAtIndex } from '../../../util/replaceItemAtIndex';
 import './card.scss';
