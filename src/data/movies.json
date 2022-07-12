@@ -34,7 +34,7 @@
       "state": "ok",
       "date_uploaded": "2017-02-17 18:40:03",
       "date_uploaded_unix": 1487353203,
-      "like": false
+      "like": true
     },
     {
       "id": 42950,
@@ -717,7 +717,6 @@
       "date_uploaded_unix": 1446339131,
       "like": false
     },
-   
     {
       "id": 21870,
       "imdb_code": "tt11989890",
@@ -2191,7 +2190,6 @@
       "date_uploaded_unix": 1657040623,
       "like": false
     },
-   
     {
       "id": 43276,
       "imdb_code": "tt0791304",
@@ -2764,7 +2762,6 @@
       "date_uploaded_unix": 1533704387,
       "like": false
     },
-   
     {
       "id": 6336,
       "imdb_code": "tt1211837",
@@ -2990,7 +2987,6 @@
       "date_uploaded_unix": 1458732017,
       "like": false
     },
-    
     {
       "id": 6668,
       "imdb_code": "tt3896198",
@@ -3186,7 +3182,6 @@
       "date_uploaded_unix": 1460219847,
       "like": false
     },
-   
     {
       "id": 7270,
       "imdb_code": "tt2283362",
@@ -3316,7 +3311,6 @@
       "date_uploaded_unix": 1527602998,
       "like": false
     },
-   
     {
       "id": 6356,
       "imdb_code": "tt3183660",
