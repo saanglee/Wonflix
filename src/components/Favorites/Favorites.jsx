@@ -1,7 +1,6 @@
 import { useRecoilValue } from 'recoil';
 import { favoriteMoviesData } from '../../store/movies';
 import Card from '../Movies/Card/Card';
-import Modal from '../Modal';
 
 const Favorites = () => {
   const favorites = useRecoilValue(favoriteMoviesData);
@@ -16,7 +15,6 @@ const Favorites = () => {
           ))}
         </div>
       </div>
-      <Modal />
     </>
   );
 };

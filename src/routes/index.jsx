@@ -3,7 +3,6 @@ import styles from './Routes.module.scss';
 import { Route, Routes } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { useGetAllMovies } from '../api/useGetMovie';
-import { ModalContextProvider } from '../store/modal';
 import { moviesData } from '../store/movies';
 
 import Layout from './Layout/Layout';
@@ -21,17 +20,15 @@ const App = () => {
   }, [data]);
 
   return (
-    <ModalContextProvider>
-      <div className={styles.app}>
-        <Routes>
-          <Route path='/' element={<Layout />}>
-            <Route index element={<Home />} />
-            <Route path='favorites' element={<Favorites />} />
-            <Route path='*' element={<NotFound />} />
-          </Route>
-        </Routes>
-      </div>
-    </ModalContextProvider>
+    <div className={styles.app}>
+      <Routes>
+        <Route path='/' element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path='favorites' element={<Favorites />} />
+          <Route path='*' element={<NotFound />} />
+        </Route>
+      </Routes>
+    </div>
   );
 };
 
