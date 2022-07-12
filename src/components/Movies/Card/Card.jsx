@@ -18,8 +18,6 @@ const Card = ({ movie }) => {
       onSubmit: (movie) => toggleFavorite(movie),
     });
 
-  // TODO: id를 전달받아 그 값만 갱신하는 selector 찾기
-  // => 없으면 그냥 진행
   const toggleFavorite = async (movie) => {
     const index = movies.findIndex((movieData) => movieData.id === movie.id);
     let updateMovies = replaceItemAtIndex(movies, index, {
@@ -28,9 +26,9 @@ const Card = ({ movie }) => {
     });
     setMovies(updateMovies);
 
-    const response = await useUpdateFavorite(movie);
+    const { status } = await useUpdateFavorite(movie);
 
-    if (response.ok) return;
+    if (status === 200) return;
     updateMovies = replaceItemAtIndex(movies, index, {
       ...movie,
       like: !movie.like,
@@ -63,12 +61,3 @@ const Card = ({ movie }) => {
 };
 
 export default React.memo(Card);
-
-// TODO: recoil에서 특정 값을 변경할 때 사용되는 util함수
-// => Object일 때 useRecoilState쓸 때 계속 쓰임 -> util로 이동
-
-// 하지만... 분명 하나만 수정하는 방식이 있을듯한데.. 진짜 selector 없나..?
-//  캐싱된다는데 대체 어떻게 캐싱되는거지...?
-// function replaceItemAtIndex(arr, index, newValue) {
-//   return [...arr.slice(0, index), newValue, ...arr.slice(index + 1)];
-// }

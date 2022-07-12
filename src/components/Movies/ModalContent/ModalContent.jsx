@@ -1,10 +1,10 @@
 import React from 'react';
+import { useRecoilValue } from 'recoil';
 import { useModalState, useModifyModal } from '../../../store/modal';
-import './modalContent.scss';
 import { CloseIcon } from '../../../assets/svgs';
 import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
 import { moviesData } from '../../../store/movies';
-import { useRecoilValue } from 'recoil';
+import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs';
 import './modalContent.scss';
 
 const ModalContent = ({ movie }) => {
@@ -50,14 +50,13 @@ const ModalContent = ({ movie }) => {
             <section className='modal-description'>
               <p>{modalMovie.summary}</p>
               <div className='favorite__box'>
-                <input
-                  type='checkbox'
-                  name='favor'
-                  id={`favor${modalMovie.id}`}
-                  onChange={onSubmitInternal}
-                  checked={modalMovie.like}
-                />
-                <label htmlFor={`favor${modalMovie.id}`}></label>
+                <button
+                  className='favorite__btn'
+                  onClick={() => onSubmitInternal(modalMovie.id)}
+                  value={modalMovie.like}
+                >
+                  <ModalContent.FavoriteBtnContent like={modalMovie.like} />
+                </button>
               </div>
             </section>
           </section>
@@ -68,3 +67,8 @@ const ModalContent = ({ movie }) => {
 };
 
 export default ModalContent;
+
+ModalContent.FavoriteBtnContent = function ModalContentFavoriteBtnContent({ like }) {
+  const FavoriteBtn = like ? <StarFilledIcon /> : <StarEmptyIcon />;
+  return <span>즐겨찾기 {FavoriteBtn}</span>;
+};
