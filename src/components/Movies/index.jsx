@@ -42,12 +42,8 @@ const Movies = () => {
       <div className='movie_wrap'>
         <MovieSort />
         <div className='movies'>
-          {/* {movies?.map((movie) => (
-            <Card key={movie.id} movie={movie} role='presentation' />
-          ))} */}
-
-{movies?.length > 0 &&
-          movies?.map((movie, i) => {
+          {movies?.length > 0 &&
+            movies?.map((movie, i) => {
             return i === movies?.length - 1 && !loading && !end ? (
               <div key={movie.id} ref={setLastElement}>
                  <Card movie={movie} role='presentation' />

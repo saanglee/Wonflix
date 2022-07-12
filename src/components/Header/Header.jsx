@@ -9,6 +9,9 @@ import { HeaderSearchIcon } from '../../assets/svgs';
 import { SearchState } from '../../store/search';
 import { useHandleScroll } from '../../hooks/useHandleScroll';
 import { useCallback } from 'react';
+import { moviesData } from '../../store/movies';
+import { useGetAllMovies } from '../../api/useGetMovie';
+import { keywordState } from '../../store/search';
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -30,14 +33,18 @@ const Header = (props) => {
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [handleScroll, throttleScroll]);
 
+  const [movies, setMovies] = useRecoilState(moviesData);
+  const [keyword, setKeyword] = useRecoilState(keywordState);
+  const { data } = useGetAllMovies();
+  const goHome = () => {
+    navigate('/');
+    setMovies(data);
+    setKeyword('');
+  };
   return (
     <header className={hide ? 'hide header': 'header'}>
       <h1 className='logo'>
-        <span
-          onClick={() => {
-            navigate('/');
-          }}
-        >
+        <span onClick={goHome}>
           Wonflix
         </span>
       </h1>

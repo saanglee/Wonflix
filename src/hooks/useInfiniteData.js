@@ -17,12 +17,10 @@ export const useInfiniteData = () => {
   const getData = useCallback(async () => {
     setLoading(true);
     try {
-      // console.log(pageNum);
       const response = await axios.get(
         `http://localhost:8000/movie?_sort=${values}&_order=DESC?&_page=${pageNum}&_limit=16`
       );
       const list = response.data;
-      // console.log(list);
       setTimeout(() => {
         if (isFilter) {
           setList([list]);
@@ -34,8 +32,6 @@ export const useInfiniteData = () => {
             return _.uniq([...prev, ...list]);
           });
         }
-        // console.log(movies);
-        // console.log(list.length > 0);
         setEnd(list.length === 0);
         setLoading(false);
       }, 300);

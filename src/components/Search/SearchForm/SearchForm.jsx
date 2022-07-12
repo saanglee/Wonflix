@@ -22,6 +22,7 @@ const SearchForm = () => {
 
   const searchSubmit = async (event) => {
     event.preventDefault();
+    window.history.pushState("", debouncedKeyword, `/?q=${debouncedKeyword}`);
     useSearch(debouncedKeyword).then((result) => setMovies(result));
   };
 
@@ -52,8 +53,9 @@ const SearchForm = () => {
         onBlur={handleInputBlur}
         className='search_form_input'
         placeholder='검색어를 입력해주세요.'
+        autoFocus
       />
-      <button type='button' className='search_form_btn'>
+      <button type='button' className='search_form_btn' onClick={searchSubmit}>
         검색
       </button>
     </form>

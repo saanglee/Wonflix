@@ -12,8 +12,14 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
     gap: 0.25rem;
     min-height: 100vh;
     background-color: $BLACK;
+    & .no_favorite_list{
+      width: 100%;
+      text-align: center;
+      margin-top: -5.75rem;
+    }
   }
 }
