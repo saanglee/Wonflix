@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { moviesData, keywordState, dropdownState } from '../../../store/search';
+import { keywordState, dropdownState } from '../../../store/search';
+import { moviesData } from '../../../store/movies';
 import DropdownItems from './DropdownItems';
 import './dropdown.scss';
 import cx from 'classnames';
@@ -9,7 +10,9 @@ const Dropdown = () => {
   const keyword = useRecoilValue(keywordState);
   const movies = useRecoilValue(moviesData);
   const [openDropdown, setOpenDropdown] = useRecoilState(dropdownState);
+
   const movieTitles = movies.map((movie) => movie.title);
+  // FIXME: error) recoil moviesData가 아니라 json에서 가져와야 함
 
   const filteredTitles = useMemo(
     (element) => {
@@ -17,6 +20,9 @@ const Dropdown = () => {
     },
     [keyword]
   );
+  useMemo(() => {
+    console.log(filteredTitles, keyword);
+  }, [filteredTitles, keyword]);
 
   return (
     <section className={cx('dropdown', { false_hidden: openDropdown })}>
@@ -36,13 +42,7 @@ const Dropdown = () => {
           </div>
         )}
       </div>
-      <button
-        type='button'
-        className='dropdown_close'
-        onClick={() => {
-          setOpenDropdown(false);
-        }}
-      >
+      <button type='button' className='dropdown_close'>
         추천 검색어 끄기
       </button>
     </section>
