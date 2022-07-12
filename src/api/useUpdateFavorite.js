@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { BASE_URL } from './config';
 
-export const useUpdateFavorite = async (id, checked) => {
+export const useUpdateFavorite = async ({ id, like }) => {
   try {
-    const request = await axios.patch(`${BASE_URL}/${id}`, {
-      like: checked,
+    const request = await axios.patch(`BASE_URL/${id}`, {
+      like: !like,
     });
     return request.data;
   } catch (error) {
