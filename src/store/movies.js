@@ -5,6 +5,7 @@ export const moviesData = atom({
   default: [],
 });
 
+
 export const modalMovieData = selectorFamily({
   key: 'modalMovieData',
   get:
@@ -34,4 +35,5 @@ export const pageData = atom({
 export const isFilterData = atom({
   key: 'isFilterData',
   default: true,
+
 });

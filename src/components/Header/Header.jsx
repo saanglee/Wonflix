@@ -27,7 +27,6 @@ const Header = (props) => {
   const handleClickSearchToggle = (event) => {
     setIsSearchOpen((current) => !current);
   };
-  
   useEffect(() => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
@@ -35,10 +34,8 @@ const Header = (props) => {
 
   const [movies, setMovies] = useRecoilState(moviesData);
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const { data } = useGetAllMovies();
   const goHome = () => {
-    navigate('/');
-    setMovies(data);
+    navigate('/', {replace: true});
     setKeyword('');
   };
   return (
@@ -54,6 +51,7 @@ const Header = (props) => {
         <button className='search_btn' type='button' onClick={handleClickSearchToggle}>
           <HeaderSearchIcon />
         </button>
+
         <button
           type='button'
           className='favorites_btn'

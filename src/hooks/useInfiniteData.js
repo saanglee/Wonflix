@@ -23,7 +23,7 @@ export const useInfiniteData = () => {
       const list = response.data;
       setTimeout(() => {
         if (isFilter) {
-          setList([list]);
+          setList(list);
           setMovies([...list]);
           setIsFilter(false);
         } else {
