@@ -1,12 +1,11 @@
-import { useRef, useState } from 'react';
 import { useRecoilState } from 'recoil';
-import { useSortMovie } from '../../../api/useSortMovie';
-import { moviesData } from '../../../store/movies';
+import { sortData, pageData, isFilterData } from '../../../store/movies';
 import './movieSort.scss';
 
 const MovieSort = () => {
-  const [movies, setMovies] = useRecoilState(moviesData);
-
+  const [values, setValues] = useRecoilState(sortData);
+  const [pageNum, setPageNum] = useRecoilState(pageData);
+  const [isFilter, setIsFilter] = useRecoilState(isFilterData);
   const sortOptions = [
     { name: '전체', value: '' },
     { name: '평점순', value: 'rating' },
@@ -14,15 +13,19 @@ const MovieSort = () => {
   ];
 
   const onHandleSort = (event) => {
-    useSortMovie(event.target.value).then((result) => setMovies(result));
+
+    setValues(event.target.value);
+    setPageNum(1);
+    setIsFilter(true);
+   
   };
 
   return (
     <div className='movie_sort'>
       <div className='select_wrap'>
         <select name='movieSort' id='movieSort' onChange={onHandleSort}>
-          {sortOptions.map((option, index) => (
-            <option key={index} value={option.value}>
+          {sortOptions.map((option) => (
+            <option key={`1-${option}`} value={option.value}>
               {option.name}
             </option>
           ))}
