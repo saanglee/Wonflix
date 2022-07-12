@@ -7,45 +7,41 @@ import { useNavigate } from 'react-router-dom';
 import { useThrottle } from '../../hooks/useThrottle';
 import { HeaderSearchIcon } from '../../assets/svgs';
 import { SearchState } from '../../store/search';
+import { useHandleScroll } from '../../hooks/useHandleScroll';
+import { useCallback } from 'react';
+import { moviesData } from '../../store/movies';
+import { useGetAllMovies } from '../../api/useGetMovie';
+import { keywordState } from '../../store/search';
 
-const Header = () => {
+const Header = (props) => {
   const navigate = useNavigate();
+  const {hide, setHide} = props;
+  const [pageY, setPageY] = useState(0);
+  const documentRef = useRef(document);
+  const handleScroll = useCallback((event) => useHandleScroll(event, {setHide, setPageY, pageY}), [pageY, setHide]);
   const throttleScroll = useThrottle(handleScroll, 200);
 
-  // scrolls
-  const [hide, setHide] = useState(false);
-  const [pageY, setPageY] = useState(0);
   const [isSearchOpen, setIsSearchOpen] = useRecoilState(SearchState);
-  // console.log(pageY);
 
-  const documentRef = useRef(document);
-
-  function handleScroll(event) {
-    event.stopPropagation();
-    const { pageYOffset } = window;
-    const deltaY = pageYOffset - pageY;
-    const hide = pageYOffset !== 0 && deltaY >= 0;
-    setHide(hide);
-    setPageY(pageYOffset);
-  }
 
   const handleClickSearchToggle = (event) => {
-    setIsSearchOpen((currnt) => !currnt);
+    setIsSearchOpen((current) => !current);
   };
-
   useEffect(() => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
-  }, [pageY]);
+  }, [handleScroll, throttleScroll]);
 
+  const [movies, setMovies] = useRecoilState(moviesData);
+  const [keyword, setKeyword] = useRecoilState(keywordState);
+  const goHome = () => {
+    navigate('/', {replace: true});
+    setKeyword('');
+  };
   return (
-    <header className='header'>
+    <header className={hide ? 'hide header': 'header'}>
       <h1 className='logo'>
-        <span
-          onClick={() => {
-            navigate('/');
-          }}
-        >
+        <span onClick={goHome}>
           Wonflix
         </span>
       </h1>

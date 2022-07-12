@@ -1,67 +1,60 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React from 'react';
 import { useRecoilState } from 'recoil';
-import { useModifyModal } from '../../../store/modal';
-import './card.scss';
-import { CheckIcon } from '../../../assets/svgs/index';
 import ModalContent from '../ModalContent/ModalContent';
+import { useModifyModal } from '../../../store/modal';
+import { moviesData } from '../../../store/movies';
 import { useDebounce } from '../../../hooks/useDebounce';
 import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
-import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs/index';
+import { replaceItemAtIndex } from '../../../util/replaceItemAtIndex';
+import './card.scss';
 
-const Card = ({ movie, ...props }) => {
-  const favoriteInput = useRef(null);
-  const [movieData, setmovieData] = useState(movie);
-
-  const {
-    id,
-    imdb_code,
-    title,
-    title_english,
-    title_long,
-    language,
-    rating,
-    runtime,
-    summary,
-    synopsis,
-    medium_cover_image,
-    large_cover_image,
-    like,
-  } = movieData;
-
+const Card = ({ movie }) => {
   const { openModal } = useModifyModal();
+  const [movies, setMovies] = useRecoilState(moviesData);
 
   const openModalWithData = () =>
     openModal({
       children: <ModalContent movie={movie} />,
-      onSubmit: () => console.log('submit'), // TODO: 클라이언트 즐겨찾기 Toggle api
+      onSubmit: (movie) => toggleFavorite(movie),
     });
 
-  const onChangeFavorite = (_id) => {
-    const isChecked = favoriteInput.current.checked;
-    useUpdateFavorite(id, isChecked).then((result) => setmovieData(result));
+  const toggleFavorite = async (movie) => {
+    const index = movies.findIndex((movieData) => movieData.id === movie.id);
+    let updateMovies = replaceItemAtIndex(movies, index, {
+      ...movie,
+      like: !movie.like,
+    });
+    setMovies(updateMovies);
+
+    const { status } = await useUpdateFavorite(movie);
+
+    if (status === 200) return;
+    updateMovies = replaceItemAtIndex(movies, index, {
+      ...movie,
+      like: !movie.like,
+    });
+    setMovies(updateMovies);
   };
 
   return (
     <>
       <div className='card'>
-        <div className='card_img' onClick={() => openModalWithData(movieData)}>
-          <img src={medium_cover_image} alt={title} />
+        <div className='card_img' onClick={openModalWithData}>
+          <img src={movie.medium_cover_image} alt={movie.title} />
         </div>
-        <h1 className='card_title' onClick={() => openModalWithData(movieData)}>
-          {title}
+        <h1 className='card_title' onClick={openModalWithData}>
+          {movie.title}
         </h1>
         <div className='card_favor'>
           <input
             type='checkbox'
             name='favor'
-            id={`favor${id}`}
-            ref={favoriteInput}
-            onChange={() => onChangeFavorite(id)}
-            checked={like}
+            id={`favor${movie.id}`}
+            onChange={() => toggleFavorite(movie)}
+            checked={movie.like}
           />
-          <label htmlFor={`favor${id}`}></label>
+          <label htmlFor={`favor${movie.id}`}></label>
         </div>
-        {/* <CheckIcon /> */}
       </div>
     </>
   );
