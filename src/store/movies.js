@@ -1,10 +1,14 @@
-import { atom, selector, selectorFamily } from 'recoil';
+import { atom, selectorFamily } from 'recoil';
 
 export const moviesData = atom({
   key: 'moviesData',
   default: [],
 });
 
+export const favoriteMoviesData = atom({
+  key: 'favoriteMoviesData',
+  default: [],
+});
 
 export const modalMovieData = selectorFamily({
   key: 'modalMovieData',
@@ -12,14 +16,6 @@ export const modalMovieData = selectorFamily({
     (id) =>
     ({ get }) =>
       get(moviesData).find((movie) => movie.id === id),
-});
-
-export const favoriteMoviesData = selector({
-  key: 'favoriteMoviesData',
-  get: ({ get }) => {
-    const movies = get(moviesData);
-    return movies.filter((movie) => movie.like);
-  },
 });
 
 export const sortData = atom({
@@ -35,5 +31,4 @@ export const pageData = atom({
 export const isFilterData = atom({
   key: 'isFilterData',
   default: true,
-
 });

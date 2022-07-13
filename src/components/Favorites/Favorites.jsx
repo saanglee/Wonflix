@@ -1,9 +1,11 @@
-import { useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { favoriteMoviesData } from '../../store/movies';
+import { useGetFavoriteMovies } from '../../api/useGetMovie';
 import Card from '../Movies/Card/Card';
 
 const Favorites = () => {
-  const favorites = useRecoilValue(favoriteMoviesData);
+  const [favorites, setFavorites] = useRecoilState(favoriteMoviesData);
+  useGetFavoriteMovies().then((result) => setFavorites(result));
 
   return (
     <>
@@ -11,7 +13,7 @@ const Favorites = () => {
         <div className='movies'>
           {!!favorites.length || <span className='no_favorite_list'>즐겨찾기 내역이 없습니다</span>}
           {favorites?.map((favor) => (
-            <Card key={favor.id} movie={favor} role='presentation' />
+            <Card key={favor.id} movie={favor} atom={favoriteMoviesData} role='presentation' />
           ))}
         </div>
       </div>
