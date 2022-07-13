@@ -1,15 +1,14 @@
 import { useRecoilValue } from 'recoil';
-import { useModalState, useModifyModal } from '../../../store/modal';
-import { CloseIcon } from '../../../assets/svgs';
+import { modalData } from '../../../store/modal';
 import { modalMovieData } from '../../../store/movies';
-import { StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs';
+import { useModal } from '../../Modal';
+import { CloseIcon, StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs';
 import './modalContent.scss';
 import { useEffect, useState } from 'react';
 
 const ModalContent = ({ movie }) => {
-  const { modalData } = useModalState();
-  const { closeModal } = useModifyModal();
-  const { onCancel, onSubmit } = modalData;
+  const [, closeModal] = useModal();
+  const { onCancel, onSubmit } = useRecoilValue(modalData);
   const modalMovie = useRecoilValue(modalMovieData(movie.id));
 
   const [moreOpen, setMoreOpen] = useState(false);
