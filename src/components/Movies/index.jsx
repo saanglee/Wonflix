@@ -3,7 +3,6 @@ import { useRecoilState } from 'recoil';
 import { moviesData, sortData } from '../../store/movies';
 import './movies.scss';
 import Card from './Card/Card';
-import Modal from '../Modal';
 import MovieSort from './MovieSort/MovieSort';
 
 import { useObserver } from '../../hooks/useObserver';
@@ -17,7 +16,7 @@ const Movies = () => {
   const observer = useObserver(setPageNum);
 
   useEffect(() => {
-    if(!end) {
+    if (!end) {
       getData(values);
     }
   }, [pageNum, getData, list, setMovies, end, values]);
@@ -44,19 +43,18 @@ const Movies = () => {
         <div className='movies'>
           {movies?.length > 0 &&
             movies?.map((movie, i) => {
-            return i === movies?.length - 1 && !loading && !end ? (
-              <div key={movie.id} ref={setLastElement}>
-                 <Card movie={movie} role='presentation' />
-              </div>
-            ) : (
-              <Card key={movie.id} movie={movie} role='presentation' />
-            );
-          })}
+              return i === movies?.length - 1 && !loading && !end ? (
+                <div key={movie.id} ref={setLastElement}>
+                  <Card movie={movie} role='presentation' />
+                </div>
+              ) : (
+                <Card key={movie.id} movie={movie} role='presentation' />
+              );
+            })}
         </div>
-        {loading && <p className="text-center">loading...</p>}
-      {end && <p className="text-center my-10">여기가 페이지 끝입니다!</p>}
+        {loading && <p className='text-center'>loading...</p>}
+        {end && <p className='text-center my-10'>여기가 페이지 끝입니다!</p>}
       </div>
-      <Modal />
     </>
   );
 };

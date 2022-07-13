@@ -1,15 +1,15 @@
-import { useModalState, useModifyModal } from '../../store/modal';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { modalIsOpen, modalData } from '../../store/modal';
 import { Portal } from '../Portal';
 import './modal.scss';
 
 const Modal = () => {
-  const { isOpen, modalData } = useModalState();
-  const { closeModal } = useModifyModal();
-  if (!isOpen) {
-    return <></>;
-  }
+  const isOpen = useRecoilValue(modalIsOpen);
+  const { children } = useRecoilValue(modalData);
 
-  const { children } = modalData;
+  const [, closeModal] = useModal();
+
+  if (!isOpen) return <></>;
 
   return (
     <Portal>
@@ -21,4 +21,25 @@ const Modal = () => {
   );
 };
 
-export default Modal;
+const useModal = () => {
+  const setIsOpen = useSetRecoilState(modalIsOpen);
+  const setModalContent = useSetRecoilState(modalData);
+
+  const openModal = ({ children, onCancel, onSubmit }) => {
+    setIsOpen(true);
+    setModalContent({
+      children,
+      onCancel,
+      onSubmit,
+    });
+  };
+
+  const closeModal = () => {
+    setIsOpen(false);
+    setModalContent({});
+  };
+
+  return [openModal, closeModal];
+};
+
+export { Modal, useModal };
