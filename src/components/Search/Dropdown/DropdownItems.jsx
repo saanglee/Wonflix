@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { useSearch } from '../../../api/useSearch';
 import { keywordState, dropdownState, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
@@ -12,8 +12,8 @@ const DropdownItems = ({ title, index }) => {
   // TODO: title공백 제거한걸로 비교
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [movies, setMovies] = useRecoilState(moviesData);
-  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
-  const [curIdx, setCurIdx] = useRecoilState(curIdxState);
+  const setIsDropdownOpen = useSetRecoilState(dropdownState);
+  const curIdx = useRecoilValue(curIdxState);
 
   const handleClickTitle = (event) => {
     useSearch(title).then((title) => setMovies(title));
