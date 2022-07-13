@@ -5,6 +5,7 @@ import { useSearch } from '../../../api/useSearch';
 import { keywordState, dropdownState, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import { SearchIcon } from '../../../assets/svgs';
+
 import './dropdown.scss';
 import cx from 'classnames';
 

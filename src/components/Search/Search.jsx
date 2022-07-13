@@ -1,11 +1,10 @@
 import React from 'react';
 import SearchForm from './SearchForm/SearchForm';
-import { dropdownState, searchState } from '../../store/search';
+import { searchState } from '../../store/search';
 import { HeaderSearchIcon } from '../../assets/svgs';
 
 import { useRecoilState } from 'recoil';
 import './search.scss';
-import cx from 'classnames';
 
 const Search = () => {
   const [isSearchOpen, setIsSearchOpen] = useRecoilState(searchState);
