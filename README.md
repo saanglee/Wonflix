@@ -7,10 +7,6 @@
 # 🚀 [배포 링크](https://wonfilx.herokuapp.com/)
 
 
-# ✨ [와이어프레임](https://www.figma.com/file/xuNG7O0WGr30z7zg8vqZha/pre-onboarding-week1-1?node-id=2%3A3)
-<img width="1090" alt="image" src="https://user-images.githubusercontent.com/92660097/178669374-932a2e26-ee57-40cc-a9f9-6df9ef276628.png">
-
-
 
 
 
@@ -143,6 +139,14 @@
 `axois`
 `json-server`
 `lodash`
+
+
+
+# [와이어프레임](https://www.figma.com/file/xuNG7O0WGr30z7zg8vqZha/pre-onboarding-week1-1?node-id=2%3A3)
+<img width="1090" alt="image" src="https://user-images.githubusercontent.com/92660097/178669374-932a2e26-ee57-40cc-a9f9-6df9ef276628.png">
+
+</br>
+</br>
 
 
 
