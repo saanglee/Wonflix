@@ -1,4 +1,4 @@
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { keywordState, dropdownState, focusedInput } from '../../../store/search';
 import DropdownItems from './DropdownItems';
 import './dropdown.scss';
@@ -6,8 +6,8 @@ import cx from 'classnames';
 
 const Dropdown = ({ filteredTitles }) => {
   const searchKeyword = useRecoilValue(keywordState);
-  const [openDropdown, setOpenDropdown] = useRecoilState(dropdownState);
-  const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
+  const isInputFocused = useRecoilValue(focusedInput);
+  const setOpenDropdown = useSetRecoilState(dropdownState);
 
   const handleClickClose = () => {
     setOpenDropdown((current) => !current);

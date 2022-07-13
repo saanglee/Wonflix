@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import './searchForm.scss';
 import axios from 'axios';
 
@@ -29,6 +29,7 @@ const SearchForm = () => {
           placeholder='검색어를 입력해주세요.'
           value={searchKeyword}
           onChange={(event) => setSearchKeyword(event.target.value)}
+          autoFocus
         />
         <button type='button' className='search_form_btn'>
           검색

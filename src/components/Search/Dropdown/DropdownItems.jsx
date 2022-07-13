@@ -1,5 +1,5 @@
-import React, { useMemo } from 'react';
-import { useRecoilState } from 'recoil';
+import { useMemo } from 'react';
+import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { useSearch } from '../../../api/useSearch';
 import { keywordState, dropdownState, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
@@ -10,8 +10,8 @@ import cx from 'classnames';
 const DropdownItems = ({ title, index }) => {
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [movies, setMovies] = useRecoilState(moviesData);
-  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
-  const [currentIdx, setCurrentIdx] = useRecoilState(curIdxState);
+  const setIsDropdownOpen = useSetRecoilState(dropdownState);
+  const currentIdx = useRecoilValue(curIdxState);
 
   const handleClickTitle = (event) => {
     useSearch(title).then((title) => setMovies(title));
