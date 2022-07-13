@@ -10,7 +10,7 @@ import cx from 'classnames';
 
 const DropdownItems = ({ title, index }) => {
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [movies, setMovies] = useRecoilState(moviesData);
+  const setMovies = useSetRecoilState(moviesData);
   const setIsDropdownOpen = useSetRecoilState(dropdownState);
   const currentIndex = useRecoilValue(currentIndexState);
 

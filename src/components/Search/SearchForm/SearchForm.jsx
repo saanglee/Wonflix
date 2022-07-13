@@ -52,6 +52,16 @@ const SearchForm = () => {
     if (event.key === 'Tab') return;
     if (event.key === 'ArrowUp') {
       event.preventDefault();
+      currentIndex <= 0 ? setCurrentIndex(filteredTitles.length - 1) : setCurrentIndex((prev) => prev - 1);
+    }
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      currentIndex === filteredTitles.length - 1 ? setCurrentIndex(0) : setCurrentIndex((prev) => prev + 1);
+    }
+
+    if (event.key === 'Enter') {
+      if (!filteredTitles[currentIndex]) return;
+      setKeyword(filteredTitles[currentIndex]); // selectedItem이 keyword
     }
   };
 
