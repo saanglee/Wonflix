@@ -77,7 +77,7 @@ const SearchForm = () => {
           className='search_form_input'
           placeholder='검색어를 입력해주세요.'
         />
-        <button type='button' className='search_form_btn'>
+        <button type='submit' className='search_form_btn'>
           검색
         </button>
         <Dropdown filteredTitles={filteredTitles} />

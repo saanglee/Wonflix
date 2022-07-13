@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './header.scss';
 import Search from '../Search/Search';
 import { useRecoilState } from 'recoil';
@@ -10,7 +10,6 @@ import { useHandleScroll } from '../../hooks/useHandleScroll';
 import { useCallback } from 'react';
 import { keywordState } from '../../store/search';
 import { sortData, pageData, isFilterData } from '../../store/movies';
-
 const Header = (props) => {
   const navigate = useNavigate();
   const { hide, setHide } = props;
@@ -19,24 +18,20 @@ const Header = (props) => {
   const handleScroll = useCallback((event) => useHandleScroll(event, { setHide, setPageY, pageY }), [pageY, setHide]);
   const throttleScroll = useThrottle(handleScroll, 200);
 
-
   const [values, setValues] = useRecoilState(sortData);
   const [isFilter, setIsFilter] = useRecoilState(isFilterData);
   const [pageNum, setPageNum] = useRecoilState(pageData);
-
-  const [keyword, setKeyword] = useRecoilState(keywordState);
-  // const [isSearchOpen, setIsSearchOpen] = useRecoilState(SearchState);
-  // console.log(pageY);
 
   useEffect(() => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [handleScroll, throttleScroll]);
 
+  const [keyword, setKeyword] = useRecoilState(keywordState);
   const goHome = () => {
     navigate('/', { replace: true });
     setKeyword('');
-    setValues('');
+    setValues('rating');
     setPageNum(1);
     setIsFilter(true);
   };
