@@ -1,15 +1,14 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import ModalContent from '../ModalContent/ModalContent';
-import { useModifyModal } from '../../../store/modal';
+import { useModal } from '../../Modal';
 import { moviesData } from '../../../store/movies';
-import { useDebounce } from '../../../hooks/useDebounce';
 import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
 import { replaceItemAtIndex } from '../../../util/replaceItemAtIndex';
+import ModalContent from '../ModalContent/ModalContent';
 import './card.scss';
 
 const Card = ({ movie }) => {
-  const { openModal } = useModifyModal();
+  const [openModal] = useModal();
   const [movies, setMovies] = useRecoilState(moviesData);
 
   const openModalWithData = () =>
