@@ -9,12 +9,12 @@ import Dropdown from '../Dropdown/Dropdown';
 import cx from 'classnames';
 
 const SearchForm = () => {
-  const [isSearchOpen, setIsSearchOpen] = useRecoilState(searchState);
   const [movies, setMovies] = useRecoilState(moviesData);
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
-  const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
   const [curIdx, setCurIdx] = useRecoilState(curIdxState);
+  const isSearchOpen = useRecoilValue(searchState);
+  const setIsInputFocused = useSetRecoilState(focusedInput);
+  // const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
 
   const debouncedKeyword = useDebounce(keyword, 100);
 

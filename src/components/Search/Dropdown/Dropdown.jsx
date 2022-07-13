@@ -1,5 +1,5 @@
 import React, { useEffect, useMemo } from 'react';
-import { useRecoilValue, useRecoilState } from 'recoil';
+import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
 import { keywordState, dropdownState, focusedInput } from '../../../store/search';
 import { useGetAllMovies } from '../../../api/useGetMovie';
 import DropdownItems from './DropdownItems';
@@ -9,8 +9,8 @@ import { filter } from 'lodash';
 
 const Dropdown = ({ filteredTitles }) => {
   const keyword = useRecoilValue(keywordState);
-  const [openDropdown, setOpenDropdown] = useRecoilState(dropdownState);
-  const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
+  const isInputFocused = useRecoilValue(focusedInput);
+  const setOpenDropdown = useSetRecoilState(dropdownState);
 
   const handleClickClose = () => {
     setOpenDropdown((current) => !current);
