@@ -7,7 +7,7 @@ const MovieSort = () => {
   const [pageNum, setPageNum] = useRecoilState(pageData);
   const [isFilter, setIsFilter] = useRecoilState(isFilterData);
   const sortOptions = [
-    { name: '전체', value: '' },
+    { name: '전체', value: 'column' },
     { name: '평점순', value: 'rating' },
     { name: '최신순', value: 'year' },
   ];

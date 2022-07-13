@@ -9,7 +9,7 @@ import { useThrottle } from '../../hooks/useThrottle';
 import { useHandleScroll } from '../../hooks/useHandleScroll';
 import { useCallback } from 'react';
 import { keywordState } from '../../store/search';
-import { sortData, pageData, isFilterData } from '../../store/movies';
+import {moviesData, sortData, pageData, isFilterData } from '../../store/movies';
 const Header = (props) => {
   const navigate = useNavigate();
   const { hide, setHide } = props;
@@ -17,7 +17,7 @@ const Header = (props) => {
   const documentRef = useRef(document);
   const handleScroll = useCallback((event) => useHandleScroll(event, { setHide, setPageY, pageY }), [pageY, setHide]);
   const throttleScroll = useThrottle(handleScroll, 200);
-
+  const [movies, setMovies]= useRecoilState(moviesData);
   const [values, setValues] = useRecoilState(sortData);
   const [isFilter, setIsFilter] = useRecoilState(isFilterData);
   const [pageNum, setPageNum] = useRecoilState(pageData);
@@ -30,10 +30,15 @@ const Header = (props) => {
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const goHome = () => {
     navigate('/', { replace: true });
-    setKeyword('');
-    setValues('rating');
+    
+    setValues('column');
     setPageNum(1);
     setIsFilter(true);
+    setKeyword('');
+    if(keyword !== '') {
+      setMovies([]);
+    }
+    
   };
 
   return (

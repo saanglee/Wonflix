@@ -18,7 +18,7 @@ export const useInfiniteData = () => {
   const getData = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await axios.get(`${BASE_URL}?_sort=${values}&_order=DESC?&_page=${pageNum}&_limit=16`);
+      const response = await axios.get(`${BASE_URL}?_sort=${values}&_order=DESC&_page=${pageNum}&_limit=16`);
       const list = response.data;
       setTimeout(() => {
         if (isFilter) {

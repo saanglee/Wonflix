@@ -26,11 +26,11 @@ const SearchForm = () => {
 
   useEffect(() => {}, [movies]);
 
-  const movieTitles = movies.map((movie) => movie.title);
+  const movieTitles = movies.map((movie) => movie?.title);
 
   const filteredTitles = useMemo(
     (element) => {
-      return movieTitles.filter((title) => title.toLowerCase().startsWith(keyword.toLowerCase()));
+      return movieTitles.filter((title) => title?.toLowerCase().startsWith(keyword?.toLowerCase()));
     },
     [keyword]
   );

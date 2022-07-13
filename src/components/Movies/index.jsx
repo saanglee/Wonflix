@@ -44,16 +44,16 @@ const Movies = () => {
           {movies?.length > 0 &&
             movies?.map((movie, i) => {
               return i === movies?.length - 1 && !loading && !end ? (
-                <div key={movie.id} ref={setLastElement}>
+                <div key={movie.imdb_code} ref={setLastElement}>
                   <Card movie={movie} atom={moviesData} role='presentation' />
                 </div>
               ) : (
-                <Card key={movie.id} movie={movie} atom={moviesData} role='presentation' />
+                <Card key={movie.imdb_code} movie={movie} atom={moviesData} role='presentation' />
               );
             })}
         </div>
-        {loading && <p className='text-center'>loading...</p>}
-        {end && <p className='text-center my-10'>여기가 페이지 끝입니다!</p>}
+        {loading && <p>loading...</p>}
+        {end && <p>여기가 페이지 끝입니다!</p>}
       </div>
     </>
   );
