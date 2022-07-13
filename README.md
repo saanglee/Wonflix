@@ -45,9 +45,6 @@
  ┃ ┣ 📂Favorites
  ┃ ┃ ┗ 📜Favorites.jsx
  ┃ ┣ 📂Header
- ┃ ┃ ┣ 📂SearchForm
- ┃ ┃ ┃ ┣ 📜SearchForm.jsx
- ┃ ┃ ┃ ┗ 📜searchForm.scss
  ┃ ┃ ┣ 📜Header.jsx
  ┃ ┃ ┣ 📜TopButton.jsx
  ┃ ┃ ┣ 📜header.scss
