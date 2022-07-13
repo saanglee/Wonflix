@@ -2,11 +2,12 @@ import { useEffect, useMemo } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import { searchState, keywordState, focusedInput, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
-import './searchForm.scss';
 import { useSearch } from '../../../api/useSearch';
 import { useDebounce } from '../../../hooks/useDebounce';
 import Dropdown from '../Dropdown/Dropdown';
+
 import cx from 'classnames';
+import './searchForm.scss';
 
 const SearchForm = () => {
   const [movies, setMovies] = useRecoilState(moviesData);
