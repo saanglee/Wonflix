@@ -1,0 +1,29 @@
+@import 'src/styles/constants/_colors.scss';
+
+.not_found_container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  .not_found_wrapper {
+    text-align: center;
+    display: grid;
+    place-items: center;
+
+    .not_found_title {
+      padding-bottom: 50px;
+      font-size: 33px;
+    }
+    .go_home_btn {
+      cursor: pointer;
+      border: 2px solid white;
+      width: 200px;
+      height: 100px;
+      font-size: 20px;
+    }
+
+    .go_home_btn:hover {
+      background-color: $GRAY3;
+    }
+  }
+}

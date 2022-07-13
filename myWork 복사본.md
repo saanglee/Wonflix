@@ -1,5 +1,5 @@
 # Header
-
+```jsx
 import React, { useEffect, useState, useRef } from 'react';
 import './header.scss';
 import Search from '../Search/Search';
@@ -61,7 +61,7 @@ const Header = () => {
     </header>
   );
 };
-
+```
 ```css
 @import 'src/styles/constants/_colors.scss';
 @import 'src/styles/base/_fonts.scss';

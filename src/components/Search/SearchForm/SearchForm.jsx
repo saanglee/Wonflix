@@ -1,32 +1,39 @@
-import React, { useCallback, useState, useEffect, useMemo } from 'react';
-import { useRecoilState } from 'recoil';
-import { SearchState, keywordState, dropdownState, focusedInput } from '../../../store/search';
+import React, { useEffect, useMemo, useState } from 'react';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import { searchState, keywordState, dropdownState, focusedInput, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import './searchForm.scss';
-import axios from 'axios';
 import { useSearch } from '../../../api/useSearch';
 import { useDebounce } from '../../../hooks/useDebounce';
+import Dropdown from '../Dropdown/Dropdown';
 import cx from 'classnames';
 
 const SearchForm = () => {
-  const [isSearchOpen, setIsSearchOpen] = useRecoilState(SearchState);
+  const [isSearchOpen, setIsSearchOpen] = useRecoilState(searchState);
   const [movies, setMovies] = useRecoilState(moviesData);
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
   const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
+  const [curIdx, setCurIdx] = useRecoilState(curIdxState);
 
   const debouncedKeyword = useDebounce(keyword, 100);
-  useEffect(() => {
-    console.log(debouncedKeyword);
-  }, [debouncedKeyword]);
 
-  const searchSubmit = async (event) => {
+  const handleSearchResult = async (event) => {
     event.preventDefault();
-    window.history.pushState("", debouncedKeyword, `/?q=${debouncedKeyword}`);
     useSearch(debouncedKeyword).then((result) => setMovies(result));
   };
 
   useEffect(() => {}, [movies]);
+
+  const movieTitles = movies.map((movie) => movie.title);
+  // FIXME: recoil movies에서 가져오면 안됨
+
+  const filteredTitles = useMemo(
+    (element) => {
+      return movieTitles.filter((title) => title.toLowerCase().startsWith(keyword.toLowerCase()));
+    },
+    [keyword]
+  );
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -34,31 +41,50 @@ const SearchForm = () => {
   };
 
   const handleInputFocused = () => {
-    setIsDropdownOpen(true);
-    setIsInputFocused(true);
+    setIsInputFocused((prev) => !prev);
+    // setIsDropdownOpen((current) => !current);
   };
 
   const handleInputBlur = () => {
-    setIsDropdownOpen(false);
-    setIsInputFocused(false);
+    setIsInputFocused((current) => !current);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === 'Tab') return;
+    if (event.key === 'ArrowUp') {
+      event.preventDefault();
+      curIdx <= 0 ? setCurIdx(filteredTitles.length - 1) : setCurIdx((prev) => prev - 1);
+    }
+    if (event.key === 'ArrowDown') {
+      event.preventDefault();
+      curIdx === filteredTitles.length - 1 ? setCurIdx(0) : setCurIdx((prev) => prev + 1);
+    }
+
+    if (event.key === 'Enter') {
+      if (!filteredTitles[curIdx]) return;
+      setKeyword(filteredTitles[curIdx]); // selectedItem이 keyword
+    }
   };
 
   return (
-    <form onSubmit={searchSubmit} className={cx('search_form', { active: isSearchOpen })}>
-      <input
-        type='text'
-        value={keyword}
-        onChange={handleInputChange}
-        onFocus={handleInputFocused}
-        onBlur={handleInputBlur}
-        className='search_form_input'
-        placeholder='검색어를 입력해주세요.'
-        autoFocus
-      />
-      <button type='button' className='search_form_btn' onClick={searchSubmit}>
-        검색
-      </button>
-    </form>
+    <>
+      <form onSubmit={handleSearchResult} className={cx('search_form', { search_form_active: isSearchOpen })}>
+        <input
+          type='text'
+          value={keyword}
+          onChange={handleInputChange}
+          onFocus={handleInputFocused}
+          onBlur={handleInputBlur}
+          onKeyDown={handleKeyDown}
+          className='search_form_input'
+          placeholder='검색어를 입력해주세요.'
+        />
+        <button type='button' className='search_form_btn'>
+          검색
+        </button>
+        <Dropdown filteredTitles={filteredTitles} />
+      </form>
+    </>
   );
 };
 

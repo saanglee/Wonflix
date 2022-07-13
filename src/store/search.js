@@ -15,7 +15,12 @@ export const dropdownState = atom({
   default: false,
 });
 
-export const SearchState = atom({
+export const searchState = atom({
   key: 'isSearchOpen',
   default: false,
+});
+
+export const curIdxState = atom({
+  key: 'curIdx',
+  default: -1,
 });
