@@ -1,7 +1,7 @@
 import { useRecoilState } from 'recoil';
 import { favoriteMoviesData } from '../../store/movies';
 import { useGetFavoriteMovies } from '../../api/useGetMovie';
-import Card from '../Movies/Card/Card';
+import Card from '../Card/Card';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useRecoilState(favoriteMoviesData);

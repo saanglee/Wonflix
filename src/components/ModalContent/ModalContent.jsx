@@ -1,8 +1,8 @@
 import { useRecoilValue } from 'recoil';
-import { modalData } from '../../../store/modal';
-import { modalMovieData } from '../../../store/movies';
-import { useModal } from '../../Modal';
-import { CloseIcon, StarEmptyIcon, StarFilledIcon } from '../../../assets/svgs';
+import { modalData } from '../../store/modal';
+import { modalMovieData } from '../../store/movies';
+import { useModal } from '../Modal';
+import { CloseIcon, StarEmptyIcon, StarFilledIcon } from '../../assets/svgs';
 import './modalContent.scss';
 import { useEffect, useState } from 'react';
 
