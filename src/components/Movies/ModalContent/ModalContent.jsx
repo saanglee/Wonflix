@@ -11,7 +11,7 @@ const ModalContent = ({ movie }) => {
   const { onCancel, onSubmit } = useRecoilValue(modalData);
   const modalMovie = useRecoilValue(modalMovieData(movie.id));
 
-  const [moreOpen, setMoreOpen] = useState(false);
+  const [ismoreOpen, setIsMoreOpen] = useState(false);
   const [isMoreBtn, setIsMoreBtn] = useState(false);
   const onCancelInternal = () => {
     onCancel?.();
@@ -23,7 +23,7 @@ const ModalContent = ({ movie }) => {
   };
 
   const onMoreTextHandler = () => {
-    setMoreOpen(!moreOpen);
+    setIsMoreOpen(!ismoreOpen);
   };
 
   useEffect(() => {
@@ -51,11 +51,11 @@ const ModalContent = ({ movie }) => {
               <p className='modal-rate'>평점 : {modalMovie.rating}</p>
             </div>
             <section className='modal-description'>
-              <div className={`modal-summary ${moreOpen && 'open'}`}>
+              <div className={`modal-summary ${ismoreOpen && 'open'}`}>
                 <p>{modalMovie.summary}</p>
                 {isMoreBtn && (
                   <button type='button' onClick={onMoreTextHandler}>
-                    {moreOpen ? '[더보기 닫기]' : '[더보기]'}
+                    {ismoreOpen ? '[더보기 닫기]' : '[더보기]'}
                   </button>
                 )}
               </div>

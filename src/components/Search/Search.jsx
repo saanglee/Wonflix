@@ -1,4 +1,3 @@
-import React from 'react';
 import SearchForm from './SearchForm/SearchForm';
 import { searchState } from '../../store/search';
 import { HeaderSearchIcon } from '../../assets/svgs';
@@ -12,7 +11,6 @@ const Search = () => {
   const handleClickSearchToggle = (event) => {
     setIsSearchOpen((currnt) => !currnt);
   };
-  console.log(isSearchOpen);
   return (
     <div className='search'>
       <SearchForm />

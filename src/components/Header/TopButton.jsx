@@ -9,10 +9,10 @@ const TopButton = (props) => {
       block: 'start',
       inline: 'center',
     });
-  const {hide, setHide} = props;
+  const { hide, setHide } = props;
 
   return (
-    <div className={hide ? 'hide top-button': 'top-button'}>
+    <div className={setHide ? 'hide top-button' : 'top-button'}>
       <button className='top-btn' onClick={moveToTop}>
         <MoveToTopIcon />
       </button>
