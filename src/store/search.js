@@ -20,7 +20,7 @@ export const searchState = atom({
   default: false,
 });
 
-export const curIdxState = atom({
-  key: 'curIdx',
+export const currentIndexState = atom({
+  key: 'currentIndex',
   default: -1,
 });

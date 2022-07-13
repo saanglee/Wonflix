@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { searchState, keywordState, dropdownState, focusedInput, curIdxState } from '../../../store/search';
+import { searchState, keywordState, dropdownState, focusedInput, currentIndexState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import { useSearch } from '../../../api/useSearch';
 import { useDebounce } from '../../../hooks/useDebounce';
+
 import Dropdown from '../Dropdown/Dropdown';
 
 import cx from 'classnames';
@@ -12,7 +13,7 @@ import './searchForm.scss';
 const SearchForm = () => {
   const [movies, setMovies] = useRecoilState(moviesData);
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [curIdx, setCurIdx] = useRecoilState(curIdxState);
+  const [currentIndex, setCurrentIndex] = useRecoilState(currentIndexState);
   const isSearchOpen = useRecoilValue(searchState);
   const setIsInputFocused = useSetRecoilState(focusedInput);
 
@@ -25,8 +26,7 @@ const SearchForm = () => {
 
   useEffect(() => {}, [movies]);
 
-  const movieTitles = movies.map((movie) => movie.title);
-  // FIXME: recoil movies에서 가져오면 안됨
+  const movieTitles = movies.map((movie) => movie.title); // FIXME:
 
   const filteredTitles = useMemo(
     (element) => {
@@ -42,7 +42,6 @@ const SearchForm = () => {
 
   const handleInputFocused = () => {
     setIsInputFocused((prev) => !prev);
-    // setIsDropdownOpen((current) => !current);
   };
 
   const handleInputBlur = () => {
@@ -53,16 +52,16 @@ const SearchForm = () => {
     if (event.key === 'Tab') return;
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      curIdx <= 0 ? setCurIdx(filteredTitles.length - 1) : setCurIdx((prev) => prev - 1);
+      currentIndex <= 0 ? setCurrentIndex(filteredTitles.length - 1) : setCurrentIndex((prev) => prev - 1);
     }
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      curIdx === filteredTitles.length - 1 ? setCurIdx(0) : setCurIdx((prev) => prev + 1);
+      currentIndex === filteredTitles.length - 1 ? setCurrentIndex(0) : setCurrentIndex((prev) => prev + 1);
     }
 
     if (event.key === 'Enter') {
-      if (!filteredTitles[curIdx]) return;
-      setKeyword(filteredTitles[curIdx]); // selectedItem이 keyword
+      if (!filteredTitles[currentIndex]) return;
+      setKeyword(filteredTitles[currentIndex]); // selectedItem이 keyword
     }
   };
 
@@ -79,7 +78,7 @@ const SearchForm = () => {
           className='search_form_input'
           placeholder='검색어를 입력해주세요.'
         />
-        <button type='button' className='search_form_btn'>
+        <button type='submit' className='search_form_btn'>
           검색
         </button>
         <Dropdown filteredTitles={filteredTitles} />
