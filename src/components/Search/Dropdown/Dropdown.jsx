@@ -20,7 +20,6 @@ const Dropdown = ({ filteredTitles }) => {
 
   return (
     <section className={cx('dropdown', { dropdown_open: isInputFocused })}>
-      {/*FIXME: 추천 검색어 끄기 */}
       <div className='dropdown_list'>
         {!keyword || !filteredTitles ? (
           <div className='no_result'>검색 결과가 없습니다.</div>
@@ -28,10 +27,7 @@ const Dropdown = ({ filteredTitles }) => {
           <div>
             <div className='dropdown_result'>{titlesLength}개의 검색 결과가 있습니다.</div>
             {filteredTitles.map((title, idx) => {
-              return (
-                <DropdownItems key={`${title}_${idx}`} title={title} index={idx} />
-                // curIdx={curIdx}
-              );
+              return <DropdownItems key={`${title}_${idx}`} title={title} index={idx} />;
             })}
           </div>
         )}

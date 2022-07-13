@@ -21,6 +21,7 @@ const Header = (props) => {
   const handleScroll = useCallback((event) => useHandleScroll(event, { setHide, setPageY, pageY }), [pageY, setHide]);
   const throttleScroll = useThrottle(handleScroll, 200);
 
+  const [keyword, setKeyword] = useRecoilState(keywordState);
   // const [isSearchOpen, setIsSearchOpen] = useRecoilState(SearchState);
 
   // console.log(pageY);
@@ -30,7 +31,6 @@ const Header = (props) => {
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [handleScroll, throttleScroll]);
 
-  const [keyword, setKeyword] = useRecoilState(keywordState);
   const goHome = () => {
     navigate('/', { replace: true });
     setKeyword('');
