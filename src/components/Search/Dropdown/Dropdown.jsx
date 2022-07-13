@@ -1,48 +1,42 @@
 import React, { useEffect, useMemo } from 'react';
 import { useRecoilValue, useRecoilState } from 'recoil';
-import { keywordState, dropdownState } from '../../../store/search';
-import { moviesData } from '../../../store/movies';
+import { keywordState, dropdownState, focusedInput } from '../../../store/search';
+import { useGetAllMovies } from '../../../api/useGetMovie';
 import DropdownItems from './DropdownItems';
 import './dropdown.scss';
 import cx from 'classnames';
+import { filter } from 'lodash';
 
-const Dropdown = () => {
+const Dropdown = ({ filteredTitles }) => {
   const keyword = useRecoilValue(keywordState);
-  const movies = useRecoilValue(moviesData);
   const [openDropdown, setOpenDropdown] = useRecoilState(dropdownState);
+  const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
 
-  const movieTitles = movies.map((movie) => movie.title);
-  // FIXME: error) recoil moviesData가 아니라 json에서 가져와야 함
+  const handleClickClose = () => {
+    setOpenDropdown((current) => !current);
+  };
 
-  const filteredTitles = useMemo(
-    (element) => {
-      return movieTitles.filter((title) => title.toLowerCase().startsWith(keyword.toLowerCase()));
-    },
-    [keyword]
-  );
-  useMemo(() => {
-    console.log(filteredTitles, keyword);
-  }, [filteredTitles, keyword]);
+  const titlesLength = filteredTitles.length;
 
   return (
-    <section className={cx('dropdown', { false_hidden: openDropdown })}>
+    <section className={cx('dropdown', { dropdown_open: isInputFocused })}>
       {/*FIXME: 추천 검색어 끄기 */}
       <div className='dropdown_list'>
-        {keyword.length === 0 ? (
-          <span>검색 기록이 없습니다.</span>
+        {!keyword || !filteredTitles ? (
+          <div className='no_result'>검색 결과가 없습니다.</div>
         ) : (
           <div>
-            {filteredTitles.map((title) => {
+            <div className='dropdown_result'>{titlesLength}개의 검색 결과가 있습니다.</div>
+            {filteredTitles.map((title, idx) => {
               return (
-                <ul key={title}>
-                  <DropdownItems title={title} />
-                </ul>
+                <DropdownItems key={`${title}_${idx}`} title={title} index={idx} />
+                // curIdx={curIdx}
               );
             })}
           </div>
         )}
       </div>
-      <button type='button' className='dropdown_close'>
+      <button type='button' className='dropdown_close' onClick={handleClickClose}>
         추천 검색어 끄기
       </button>
     </section>

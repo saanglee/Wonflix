@@ -4,9 +4,9 @@ import { RecoilRoot } from 'recoil';
 import { ModalContextProvider } from '../store/modal';
 
 import Layout from './Layout/Layout';
-import Home from './Home/Home';
-import Favorites from '../components/Favorites/Favorites';
-import NotFound from './NotFound404/NotFound';
+import Home from '../pages/Home/Home';
+import Favorites from '../pages/Favorites/Favorites';
+import NotFound from '../pages/NotFound404/NotFound';
 
 const App = () => {
   return (

@@ -1,20 +1,25 @@
-import React, { useReducer, useEffect } from 'react';
-import Dropdown from './Dropdown/Dropdown';
+import React from 'react';
 import SearchForm from './SearchForm/SearchForm';
-import { dropdownState } from '../../store/search';
+import { dropdownState, searchState } from '../../store/search';
+import { HeaderSearchIcon } from '../../assets/svgs';
 
-import { useRecoilValue, useRecoilState } from 'recoil';
-import { focusedInput } from '../../store/search';
+import { useRecoilState } from 'recoil';
 import './search.scss';
+import cx from 'classnames';
 
 const Search = () => {
-  const isFocusedInput = useRecoilValue(focusedInput);
-  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
-  console.log(isDropdownOpen);
+  const [isSearchOpen, setIsSearchOpen] = useRecoilState(searchState);
+
+  const handleClickSearchToggle = (event) => {
+    setIsSearchOpen((currnt) => !currnt);
+  };
+  console.log(isSearchOpen);
   return (
-    <div className='search_container'>
+    <div className='search'>
       <SearchForm />
-      {isDropdownOpen ? <Dropdown /> : ''}
+      <button className='search_icon_btn' type='button' onClick={handleClickSearchToggle}>
+        <HeaderSearchIcon />
+      </button>
     </div>
   );
 };

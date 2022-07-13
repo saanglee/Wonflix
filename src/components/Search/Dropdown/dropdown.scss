@@ -3,51 +3,77 @@
 .dropdown {
   border: 2px solid;
   border-radius: 8px;
-  padding: 10px;
   background-color: $GRAY3;
   margin-top: 50px;
   height: auto;
-  width: 348px;
+  width: inherit;
   position: absolute;
   cursor: default;
   white-space: nowrap;
+  visibility: hidden;
+
+  .dropdown_list {
+    padding-top: 10px;
+    font-size: 17px;
+    .no_result {
+      padding-top: 10px;
+      padding-left: 20px;
+    }
+
+    .dropdown_result {
+      padding: 10px 10px 10px 16px;
+    }
+
+    .dropdown_item {
+      font-size: 18px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+      padding-left: 10px;
+      white-space: nowrap;
+      cursor: pointer;
+
+      .search_icon {
+        width: 100%;
+        height: 100%;
+      }
+
+      mark {
+        background-color: transparent;
+        font-weight: bold;
+        color: $WHITE;
+      }
+      span {
+        font-weight: lighter;
+      }
+    }
+  }
 }
 
-.search_icon {
-  width: 100%;
-  height: 100%;
-  margin-right: 10px;
-}
+// .false_hidden {
+//   visibility: hidden;
+// }
 
 .close_button {
   height: 10px;
   cursor: pointer;
 }
 
-.dropdown_list {
-  font-size: 17px;
-}
-
 .dropdown_close {
-  padding: 10px 0;
+  padding: 3px 10px;
   font-size: 12px;
-  height: 10px;
+  height: auto;
   float: right;
   cursor: pointer;
 }
 
-.dropdown_item {
-  font-size: 18px;
-  padding: 8px 0;
-  white-space: nowrap;
-  cursor: pointer;
+.selectedDropDown {
+  background-color: rgba($WHITE, 0.4);
+}
 
-  mark {
-    background-color: transparent;
-    font-weight: bold;
-    color: $WHITE;
-  }
-  span {
-    font-weight: lighter;
-  }
+.dropdown_item:hover {
+  background-color: rgba($WHITE, 0.4);
+}
+
+.dropdown_open {
+  visibility: visible;
 }

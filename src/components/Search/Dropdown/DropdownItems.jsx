@@ -2,20 +2,24 @@ import React, { useMemo } from 'react';
 import { createSearchParams, useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { useSearch } from '../../../api/useSearch';
-import { keywordState } from '../../../store/search';
+import { keywordState, dropdownState, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import { SearchIcon } from '../../../assets/svgs';
 import './dropdown.scss';
+import cx from 'classnames';
 
-const DropdownItems = ({ title }) => {
+const DropdownItems = ({ title, index }) => {
   // TODO: title공백 제거한걸로 비교
-  const navigate = useNavigate();
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [movies, setMovies] = useRecoilState(moviesData);
+  const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
+  const [curIdx, setCurIdx] = useRecoilState(curIdxState);
 
   const handleClickTitle = (event) => {
+    useSearch(title).then((title) => setMovies(title));
+    console.log('handleClickTitle', title, movies);
     setKeyword(title);
-    useSearch(title).then((result) => setMovies(result));
+    setIsDropdownOpen((current) => !current);
   };
 
   const markText = useMemo(() => {
@@ -43,7 +47,7 @@ const DropdownItems = ({ title }) => {
     return (
       <>
         <span className='search_icon'>
-          <SearchIcon style={{ width: '20px' }} />
+          <SearchIcon style={{ width: '30px', paddingRight: '10px' }} />
         </span>
         <mark>{markStr.join('')}</mark>
         <span>{spanStr.join('')}</span>
@@ -52,10 +56,11 @@ const DropdownItems = ({ title }) => {
   }, [keyword, title]);
 
   return (
-    // TODO: 돋보기 아이콘 넣기
     // TODO: 글자 수 넘어가면 ... 으로 보이게 하기
-    <li className='dropdown_item' onClick={handleClickTitle} title={title}>
-      {markText}
+    <li className={cx('dropdown_item', { selectedDropDown: index === curIdx })}>
+      <div onClick={handleClickTitle} role='button' tabIndex={0} data-title={title}>
+        {markText}
+      </div>
     </li>
   );
 };
