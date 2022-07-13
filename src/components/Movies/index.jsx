@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 import { moviesData, sortData } from '../../store/movies';
 import './movies.scss';
-import Card from './Card/Card';
+import Card from '../Card/Card';
 import MovieSort from './MovieSort/MovieSort';
 
 import { useObserver } from '../../hooks/useObserver';

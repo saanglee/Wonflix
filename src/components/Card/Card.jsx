@@ -1,8 +1,8 @@
 import React from 'react';
 import { useRecoilState } from 'recoil';
-import { useModal } from '../../Modal';
-import { useUpdateFavorite } from '../../../api/useUpdateFavorite';
-import { replaceItemAtIndex } from '../../../util/replaceItemAtIndex';
+import { useModal } from '../Modal';
+import { useUpdateFavorite } from '../../api/useUpdateFavorite';
+import { replaceItemAtIndex } from '../../util/replaceItemAtIndex';
 import ModalContent from '../ModalContent/ModalContent';
 import './card.scss';
 

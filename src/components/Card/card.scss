@@ -1,5 +1,5 @@
-@import '../../../styles/constants/colors';
-@import '../../../styles/mixins/responsive';
+@import '../../styles/mixins/animation';
+@import '../../styles/mixins/responsive';
 
 .card {
   position: relative;
@@ -112,11 +112,11 @@
       & + label {
         width: 100%;
         height: 100%;
-        background: url('../../../assets/svgs/star_empty.svg') center/contain no-repeat;
+        background: url('../../assets/svgs/star_empty.svg') center/contain no-repeat;
         cursor: pointer;
       }
       &:checked + label {
-        background: url('../../../assets/svgs/star_filled.svg') center/contain no-repeat;
+        background: url('../../assets/svgs/star_filled.svg') center/contain no-repeat;
       }
     }
   }
