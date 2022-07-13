@@ -1,3 +1,4 @@
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import { favoriteMoviesData } from '../../store/movies';
 import { useGetFavoriteMovies } from '../../api/useGetMovie';
@@ -5,7 +6,14 @@ import Card from '../Card/Card';
 
 const Favorites = () => {
   const [favorites, setFavorites] = useRecoilState(favoriteMoviesData);
-  useGetFavoriteMovies().then((result) => setFavorites(result));
+  React.useEffect(() => {
+    async function fetchFavorites() {
+      const data = await useGetFavoriteMovies();
+      setFavorites(data);
+    }
+
+    fetchFavorites();
+  }, [setFavorites]);
 
   return (
     <>
