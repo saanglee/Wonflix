@@ -13,7 +13,6 @@ const Search = () => {
   const handleClickSearchToggle = (event) => {
     setIsSearchOpen((currnt) => !currnt);
   };
-  console.log(isSearchOpen);
   return (
     <div className='search'>
       <SearchForm />

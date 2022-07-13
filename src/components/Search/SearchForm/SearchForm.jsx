@@ -1,5 +1,5 @@
-import React, { useEffect, useMemo, useState } from 'react';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
+import React, { useEffect, useMemo } from 'react';
+import { useRecoilState } from 'recoil';
 import { searchState, keywordState, dropdownState, focusedInput, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import './searchForm.scss';
@@ -14,7 +14,7 @@ const SearchForm = () => {
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
   const [isInputFocused, setIsInputFocused] = useRecoilState(focusedInput);
-  const [curIdx, setCurIdx] = useRecoilState(curIdxState);
+  const [currentIdx, setCurrentIdx] = useRecoilState(curIdxState);
 
   const debouncedKeyword = useDebounce(keyword, 100);
 
@@ -26,7 +26,6 @@ const SearchForm = () => {
   useEffect(() => {}, [movies]);
 
   const movieTitles = movies.map((movie) => movie.title);
-  // FIXME: recoil movies에서 가져오면 안됨
 
   const filteredTitles = useMemo(
     (element) => {
@@ -42,7 +41,6 @@ const SearchForm = () => {
 
   const handleInputFocused = () => {
     setIsInputFocused((prev) => !prev);
-    // setIsDropdownOpen((current) => !current);
   };
 
   const handleInputBlur = () => {
@@ -53,16 +51,16 @@ const SearchForm = () => {
     if (event.key === 'Tab') return;
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      curIdx <= 0 ? setCurIdx(filteredTitles.length - 1) : setCurIdx((prev) => prev - 1);
+      currentIdx <= 0 ? setCurrentIdx(filteredTitles.length - 1) : setCurrentIdx((prev) => prev - 1);
     }
     if (event.key === 'ArrowDown') {
       event.preventDefault();
-      curIdx === filteredTitles.length - 1 ? setCurIdx(0) : setCurIdx((prev) => prev + 1);
+      currentIdx === filteredTitles.length - 1 ? setCurrentIdx(0) : setCurrentIdx((prev) => prev + 1);
     }
 
     if (event.key === 'Enter') {
-      if (!filteredTitles[curIdx]) return;
-      setKeyword(filteredTitles[curIdx]); // selectedItem이 keyword
+      if (!filteredTitles[currentIdx]) return;
+      setKeyword(filteredTitles[currentIdx]);
     }
   };
 
@@ -89,5 +87,3 @@ const SearchForm = () => {
 };
 
 export default SearchForm;
-
-// TODO: 검색어 input focus시 검색창 with 길어지도록 하기

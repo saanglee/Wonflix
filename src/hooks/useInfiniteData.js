@@ -2,24 +2,23 @@ import { useCallback, useState } from 'react';
 import axios from 'axios';
 import { moviesData, sortData, pageData, isFilterData } from '../store/movies';
 import { useRecoilState } from 'recoil';
+import { BASE_URL } from '../api/config';
 import _ from 'lodash';
 
 export const useInfiniteData = () => {
   const [pageNum, setPageNum] = useRecoilState(pageData);
   const [list, setList] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [end, setEnd] = useState(false);
-  const [error, setError] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isEnd, setIsEnd] = useState(false);
+  const [isError, setIsError] = useState(false);
   const [movies, setMovies] = useRecoilState(moviesData);
   const [values, setValues] = useRecoilState(sortData);
   const [isFilter, setIsFilter] = useRecoilState(isFilterData);
 
   const getData = useCallback(async () => {
-    setLoading(true);
+    setIsLoading(true);
     try {
-      const response = await axios.get(
-        `http://localhost:8000/movie?_sort=${values}&_order=DESC?&_page=${pageNum}&_limit=16`
-      );
+      const response = await axios.get(`${BASE_URL}?_sort=${values}&_order=DESC?&_page=${pageNum}&_limit=16`);
       const list = response.data;
       setTimeout(() => {
         if (isFilter) {
@@ -32,17 +31,16 @@ export const useInfiniteData = () => {
             return _.uniq([...prev, ...list]);
           });
         }
-        setEnd(list.length === 0);
-        setLoading(false);
+        setIsEnd(list.length === 0);
+        setIsLoading(false);
       }, 300);
-      console.log(movies);
     } catch (error) {
-      setEnd(true);
-      setLoading(false);
-      setError(error);
+      setIsEnd(true);
+      setIsLoading(false);
+      setIsError(error);
       alert('끝!');
     }
   }, [pageNum, setMovies, values]);
 
-  return { pageNum, setPageNum, loading, end, error, movies, getData };
+  return { pageNum, setPageNum, isLoading, isEnd, isError, movies, getData };
 };

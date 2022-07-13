@@ -3,22 +3,19 @@ import './searchForm.scss';
 import axios from 'axios';
 
 const SearchForm = () => {
-  const [word, setWord] = useState('');
+  const [searchKeyword, setSearchKeyword] = useState('');
   const [movies, setMovies] = useState(null);
 
-  useEffect(() => {
-    //이걸로 뽑아 쓰시면 됩니다
-    console.log(movies);
-  }, [movies]);
+  useEffect(() => {}, [movies]);
 
   const searchHandler = async (event) => {
     event.preventDefault();
 
     return await axios
-      .get(`http://localhost:8000/movie?q=${word}`)
+      .get(`http://localhost:8000/movie?q=${searchKeyword}`)
       .then((response) => {
         setMovies(response.data);
-        setWord('');
+        setSearchKeyword('');
       })
       .catch((error) => console.log(error));
   };
@@ -30,8 +27,8 @@ const SearchForm = () => {
           type='text'
           className='search_form_input'
           placeholder='검색어를 입력해주세요.'
-          value={word}
-          onChange={(event) => setWord(event.target.value)}
+          value={searchKeyword}
+          onChange={(event) => setSearchKeyword(event.target.value)}
         />
         <button type='button' className='search_form_btn'>
           검색

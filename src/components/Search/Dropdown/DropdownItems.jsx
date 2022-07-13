@@ -1,6 +1,5 @@
 import React, { useMemo } from 'react';
-import { createSearchParams, useNavigate } from 'react-router-dom';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 import { useSearch } from '../../../api/useSearch';
 import { keywordState, dropdownState, curIdxState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
@@ -9,15 +8,13 @@ import './dropdown.scss';
 import cx from 'classnames';
 
 const DropdownItems = ({ title, index }) => {
-  // TODO: title공백 제거한걸로 비교
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [movies, setMovies] = useRecoilState(moviesData);
   const [isDropdownOpen, setIsDropdownOpen] = useRecoilState(dropdownState);
-  const [curIdx, setCurIdx] = useRecoilState(curIdxState);
+  const [currentIdx, setCurrentIdx] = useRecoilState(curIdxState);
 
   const handleClickTitle = (event) => {
     useSearch(title).then((title) => setMovies(title));
-    console.log('handleClickTitle', title, movies);
     setKeyword(title);
     setIsDropdownOpen((current) => !current);
   };
@@ -56,8 +53,7 @@ const DropdownItems = ({ title, index }) => {
   }, [keyword, title]);
 
   return (
-    // TODO: 글자 수 넘어가면 ... 으로 보이게 하기
-    <li className={cx('dropdown_item', { selectedDropDown: index === curIdx })}>
+    <li className={cx('dropdown_item', { selectedDropDown: index === currentIdx })}>
       <div onClick={handleClickTitle} role='button' tabIndex={0} data-title={title}>
         {markText}
       </div>
@@ -66,6 +62,3 @@ const DropdownItems = ({ title, index }) => {
 };
 
 export default DropdownItems;
-
-// TODO: title에 해당하는 영화 카드들만 화면에 띄우도록 하기
-// TODO: dropdown 아이템 1개 클릭하면 해당 모달로 연결하기

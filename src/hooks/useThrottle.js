@@ -1,9 +1,9 @@
 export function useThrottle(callback, waitTime) {
   let timerId = null;
-  return (e) => {
+  return (event) => {
     if (timerId) return;
     timerId = setTimeout(() => {
-      callback.call(this, e);
+      callback.call(this, event);
       timerId = null;
     }, waitTime);
   };
