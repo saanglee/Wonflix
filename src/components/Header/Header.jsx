@@ -1,18 +1,15 @@
-import React, { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import './header.scss';
 import Search from '../Search/Search';
 import { useRecoilState } from 'recoil';
 
 import { useNavigate } from 'react-router-dom';
 import { useThrottle } from '../../hooks/useThrottle';
-import { HeaderSearchIcon } from '../../assets/svgs';
-// import { SearchState } from '../../store/search';
+
 import { useHandleScroll } from '../../hooks/useHandleScroll';
 import { useCallback } from 'react';
-import { moviesData } from '../../store/movies';
-import { useGetAllMovies } from '../../api/useGetMovie';
 import { keywordState } from '../../store/search';
-
+import { sortData, pageData, isFilterData } from '../../store/movies';
 const Header = (props) => {
   const navigate = useNavigate();
   const { hide, setHide } = props;
@@ -21,31 +18,28 @@ const Header = (props) => {
   const handleScroll = useCallback((event) => useHandleScroll(event, { setHide, setPageY, pageY }), [pageY, setHide]);
   const throttleScroll = useThrottle(handleScroll, 200);
 
-  const [keyword, setKeyword] = useRecoilState(keywordState);
-  // const [isSearchOpen, setIsSearchOpen] = useRecoilState(SearchState);
-
-  // console.log(pageY);
+  const [values, setValues] = useRecoilState(sortData);
+  const [isFilter, setIsFilter] = useRecoilState(isFilterData);
+  const [pageNum, setPageNum] = useRecoilState(pageData);
 
   useEffect(() => {
     documentRef.current.addEventListener('scroll', throttleScroll);
     return () => documentRef.current.removeEventListener('scroll', throttleScroll);
   }, [handleScroll, throttleScroll]);
 
+  const [keyword, setKeyword] = useRecoilState(keywordState);
   const goHome = () => {
     navigate('/', { replace: true });
     setKeyword('');
+    setValues('rating');
+    setPageNum(1);
+    setIsFilter(true);
   };
 
   return (
     <header className='header'>
       <h1 className='logo'>
-        <span
-          onClick={() => {
-            navigate('/');
-          }}
-        >
-          Wonflix
-        </span>
+        <span onClick={goHome}>Wonflix</span>
       </h1>
 
       <div className='header_btn_wrapper'>

@@ -1,6 +1,6 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { searchState, keywordState, dropdownState, focusedInput, currentIndexState } from '../../../store/search';
+import { searchState, keywordState, focusedInput, currentIndexState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import { useSearch } from '../../../api/useSearch';
 import { useDebounce } from '../../../hooks/useDebounce';
@@ -26,7 +26,7 @@ const SearchForm = () => {
 
   useEffect(() => {}, [movies]);
 
-  const movieTitles = movies.map((movie) => movie.title); // FIXME:
+  const movieTitles = movies.map((movie) => movie.title);
 
   const filteredTitles = useMemo(
     (element) => {
@@ -52,16 +52,6 @@ const SearchForm = () => {
     if (event.key === 'Tab') return;
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      currentIndex <= 0 ? setCurrentIndex(filteredTitles.length - 1) : setCurrentIndex((prev) => prev - 1);
-    }
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      currentIndex === filteredTitles.length - 1 ? setCurrentIndex(0) : setCurrentIndex((prev) => prev + 1);
-    }
-
-    if (event.key === 'Enter') {
-      if (!filteredTitles[currentIndex]) return;
-      setKeyword(filteredTitles[currentIndex]); // selectedItem이 keyword
     }
   };
 
@@ -88,5 +78,3 @@ const SearchForm = () => {
 };
 
 export default SearchForm;
-
-// TODO: 검색어 input focus시 검색창 with 길어지도록 하기

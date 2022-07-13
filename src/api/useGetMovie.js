@@ -9,3 +9,8 @@ export const useGetAllMovies = async () => {
     console.log(error);
   }
 };
+
+export const useGetFavoriteMovies = async () => {
+  const response = await axios.get(`${BASE_URL}?like=true`);
+  return response.data;
+};

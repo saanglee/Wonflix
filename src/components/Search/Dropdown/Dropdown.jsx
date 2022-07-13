@@ -1,14 +1,11 @@
-import React, { useEffect, useMemo } from 'react';
-import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { keywordState, dropdownState, focusedInput } from '../../../store/search';
-import { useGetAllMovies } from '../../../api/useGetMovie';
 import DropdownItems from './DropdownItems';
 import './dropdown.scss';
 import cx from 'classnames';
-import { filter } from 'lodash';
 
 const Dropdown = ({ filteredTitles }) => {
-  const keyword = useRecoilValue(keywordState);
+  const searchKeyword = useRecoilValue(keywordState);
   const isInputFocused = useRecoilValue(focusedInput);
   const setOpenDropdown = useSetRecoilState(dropdownState);
 
@@ -21,7 +18,7 @@ const Dropdown = ({ filteredTitles }) => {
   return (
     <section className={cx('dropdown', { dropdown_open: isInputFocused })}>
       <div className='dropdown_list'>
-        {!keyword || !filteredTitles ? (
+        {!searchKeyword || !filteredTitles ? (
           <div className='no_result'>검색 결과가 없습니다.</div>
         ) : (
           <div>

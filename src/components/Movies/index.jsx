@@ -45,10 +45,10 @@ const Movies = () => {
             movies?.map((movie, i) => {
               return i === movies?.length - 1 && !loading && !end ? (
                 <div key={movie.id} ref={setLastElement}>
-                  <Card movie={movie} role='presentation' />
+                  <Card movie={movie} atom={moviesData} role='presentation' />
                 </div>
               ) : (
-                <Card key={movie.id} movie={movie} role='presentation' />
+                <Card key={movie.id} movie={movie} atom={moviesData} role='presentation' />
               );
             })}
         </div>
