@@ -1,9 +1,10 @@
 import { useEffect, useMemo } from 'react';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { searchState, keywordState, focusedInput, curIdxState } from '../../../store/search';
+import { searchState, keywordState, focusedInput, currentIndexState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import { useSearch } from '../../../api/useSearch';
 import { useDebounce } from '../../../hooks/useDebounce';
+
 import Dropdown from '../Dropdown/Dropdown';
 
 import cx from 'classnames';
@@ -12,7 +13,7 @@ import './searchForm.scss';
 const SearchForm = () => {
   const [movies, setMovies] = useRecoilState(moviesData);
   const [keyword, setKeyword] = useRecoilState(keywordState);
-  const [currentIdx, setCurrentIdx] = useRecoilState(curIdxState);
+  const [currentIndex, setCurrentIndex] = useRecoilState(currentIndexState);
   const isSearchOpen = useRecoilValue(searchState);
   const setIsInputFocused = useSetRecoilState(focusedInput);
 
@@ -51,16 +52,6 @@ const SearchForm = () => {
     if (event.key === 'Tab') return;
     if (event.key === 'ArrowUp') {
       event.preventDefault();
-      currentIdx <= 0 ? setCurrentIdx(filteredTitles.length - 1) : setCurrentIdx((prev) => prev - 1);
-    }
-    if (event.key === 'ArrowDown') {
-      event.preventDefault();
-      currentIdx === filteredTitles.length - 1 ? setCurrentIdx(0) : setCurrentIdx((prev) => prev + 1);
-    }
-
-    if (event.key === 'Enter') {
-      if (!filteredTitles[currentIdx]) return;
-      setKeyword(filteredTitles[currentIdx]);
     }
   };
 

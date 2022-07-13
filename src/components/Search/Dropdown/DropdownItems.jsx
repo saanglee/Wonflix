@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 import { useRecoilState, useSetRecoilState, useRecoilValue } from 'recoil';
 import { useSearch } from '../../../api/useSearch';
-import { keywordState, dropdownState, curIdxState } from '../../../store/search';
+import { keywordState, dropdownState, currentIndexState } from '../../../store/search';
 import { moviesData } from '../../../store/movies';
 import { SearchIcon } from '../../../assets/svgs';
 
@@ -12,12 +12,13 @@ const DropdownItems = ({ title, index }) => {
   const [keyword, setKeyword] = useRecoilState(keywordState);
   const [movies, setMovies] = useRecoilState(moviesData);
   const setIsDropdownOpen = useSetRecoilState(dropdownState);
-  const currentIdx = useRecoilValue(curIdxState);
+  const currentIndex = useRecoilValue(currentIndexState);
 
   const handleClickTitle = (event) => {
     useSearch(title).then((title) => setMovies(title));
     setKeyword(title);
     setIsDropdownOpen((current) => !current);
+    setKeyword(title);
   };
 
   const markText = useMemo(() => {
@@ -54,7 +55,7 @@ const DropdownItems = ({ title, index }) => {
   }, [keyword, title]);
 
   return (
-    <li className={cx('dropdown_item', { selectedDropDown: index === currentIdx })}>
+    <li className={cx('dropdown_item', { selectedDropDown: index === currentIndex })}>
       <div onClick={handleClickTitle} role='button' tabIndex={0} data-title={title}>
         {markText}
       </div>
